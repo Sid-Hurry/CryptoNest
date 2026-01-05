@@ -26,7 +26,7 @@ const Navbar = () => {
       <Link to="/" className="text-xl font-bold text-gray-900">
         CryptoTrack
       </Link>
-
+{/* Navigation */}
       <ul className="flex gap-6 text-gray-700 font-medium">
         <li><Link to="/">Home</Link></li>
         <li><Link to="/about">About</Link></li>
