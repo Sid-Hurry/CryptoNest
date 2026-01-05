@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { coincontext } from "../context/CoinContext";
+import { coincontext } from "../../context/CoinContext";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
