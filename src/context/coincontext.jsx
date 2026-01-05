@@ -17,6 +17,7 @@ const CoinContextProvider = (props) => {
             .then(res => setAllcoins(res))
             .catch(err => console.error(err));
     }
+    // Name changed to currency to trigger useEffect on currency change
 
     useEffect(() => {
         fetchCoins();
