@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { coincontext } from "../context/CoinContext";
+import { coincontext } from "../context/coincontext";
 import { Link } from "react-router-dom";
 const Home = () => {
   const { allcoins, currency } = useContext(coincontext);

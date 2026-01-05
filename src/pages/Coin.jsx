@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Chart } from "react-google-charts";
-import { coincontext } from "../context/CoinContext";
+import { coincontext } from "../context/coincontext";
 
 const Coin = () => {
   const { coinID } = useParams();
