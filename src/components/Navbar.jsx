@@ -23,43 +23,26 @@ const Navbar = () => {
 
   return (
     <nav className="w-full px-6 py-4 bg-white shadow-sm flex items-center justify-between">
-
-      {/* App Name */}
       <Link to="/" className="text-xl font-bold text-gray-900">
         CryptoTrack
       </Link>
 
-      {/* Nav Links */}
       <ul className="flex gap-6 text-gray-700 font-medium">
-        <li>
-          <Link to="/" className="hover:text-black">
-            Home
-          </Link>
-        </li>
-        <li>
-          <Link to="/about" className="hover:text-black">
-            About
-          </Link>
-        </li>
-        <li>
-          <Link to="/track" className="hover:text-black">
-            Track
-          </Link>
-        </li>
+        <li><Link to="/">Home</Link></li>
+        <li><Link to="/about">About</Link></li>
+        <li><Link to="/track">Track</Link></li>
       </ul>
 
-      {/* Currency Selector */}
       <select
         value={currency.name}
         onChange={currencyHandler}
-        className="border border-gray-300 rounded-lg px-3 py-1 text-gray-700
+        className="border border-gray-300 rounded-lg px-3 py-1
                    outline-none focus:outline-none focus:ring-0"
       >
         <option value="USD">USD ($)</option>
         <option value="INR">INR (₹)</option>
         <option value="EUR">EUR (€)</option>
       </select>
-
     </nav>
   );
 };
