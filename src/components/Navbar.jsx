@@ -1,80 +1,87 @@
 import React, { useContext } from "react";
-import { coincontext } from "../context/coincontext";
 import { Link } from "react-router-dom";
+import { coincontext } from "../context/coincontext";
+import { ThemeContext } from "../context/ThemeContext";
 
 const Navbar = () => {
   const { currency, setCurrency } = useContext(coincontext);
+  const { theme, toggleTheme } = useContext(ThemeContext);
 
   const currencyHandler = (e) => {
-    switch (e.target.value) {
-      case "USD":
-        setCurrency({ name: "USD", symbol: "$" });
-        break;
-      case "EUR":
-        setCurrency({ name: "EUR", symbol: "€" });
-        break;
-      case "INR":
-        setCurrency({ name: "INR", symbol: "₹" });
-        break;
-      default:
-        break;
-    }
+    const value = e.target.value;
+    if (value === "USD") setCurrency({ name: "USD", symbol: "$" });
+    if (value === "EUR") setCurrency({ name: "EUR", symbol: "€" });
+    if (value === "INR") setCurrency({ name: "INR", symbol: "₹" });
   };
 
   return (
-    <nav className="w-full sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200">
+    <nav
+      className="w-full sticky top-0 z-50"
+      style={{
+        backgroundColor: "var(--bg-color)",
+        borderBottom: "1px solid var(--border-color)",
+      }}
+    >
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
 
-        {/* App Name */}
+        {/* Logo */}
         <Link
           to="/"
-          className="text-2xl font-extrabold tracking-tight text-gray-900"
+          className="text-xl font-bold tracking-tight"
+          style={{ color: "var(--text-color)" }}
         >
           Cryptonest
         </Link>
 
         {/* Navigation */}
-        <ul className="hidden md:flex gap-8 text-gray-700 font-medium">
-          <li>
-            <Link
-              to="/"
-              className="hover:text-black transition-colors"
-            >
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/about"
-              className="hover:text-black transition-colors"
-            >
-              About
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/track"
-              className="hover:text-black transition-colors"
-            >
-              Track
-            </Link>
-          </li>
-        </ul>
-
-        {/* Currency Selector */}
-        <select
-          value={currency.name}
-          onChange={currencyHandler}
-          className="border border-gray-300 bg-white
-                     rounded-lg px-3 py-1.5
-                     text-sm text-gray-700
-                     outline-none focus:outline-none focus:ring-0
-                     hover:border-gray-400 transition"
+        <div
+          className="hidden md:flex gap-6 text-sm font-medium"
+          style={{ color: "var(--muted-text)" }}
         >
-          <option value="USD">USD ($)</option>
-          <option value="INR">INR (₹)</option>
-          <option value="EUR">EUR (€)</option>
-        </select>
+          <Link to="/" className="hover:text-current">
+            Home
+          </Link>
+          <Link to="/about" className="hover:text-current">
+            About
+          </Link>
+          <Link to="/track" className="hover:text-current">
+            Track
+          </Link>
+        </div>
+
+        {/* Right Controls */}
+        <div className="flex items-center gap-3">
+
+          {/* Currency */}
+          <select
+            value={currency.name}
+            onChange={currencyHandler}
+            className="px-3 py-1.5 rounded-md text-sm outline-none"
+            style={{
+              backgroundColor: "var(--bg-color)",
+              color: "var(--text-color)",
+              border: "1px solid var(--border-color)",
+            }}
+          >
+            <option value="USD">USD ($)</option>
+            <option value="INR">INR (₹)</option>
+            <option value="EUR">EUR (€)</option>
+          </select>
+
+          {/* Theme Toggle */}
+          <button
+            onClick={toggleTheme}
+            className="px-3 py-1.5 rounded-md text-sm"
+            style={{
+              backgroundColor: "transparent",
+              color: "var(--text-color)",
+              border: "1px solid var(--border-color)",
+            }}
+          >
+            {theme === "light" ? "🌙" : "☀️"}
+          </button>
+
+        </div>
       </div>
     </nav>
   );

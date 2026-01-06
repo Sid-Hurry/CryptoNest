@@ -1,1 +1,16 @@
 @import "tailwindcss";
+/* Light Theme */
+:root {
+  --bg-color: #ffffff;
+  --text-color: #111827;
+  --muted-text: #6b7280;
+  --border-color: #e5e7eb;
+}
+
+/* Dark Theme */
+[data-theme="dark"] {
+  --bg-color: #0f172a;
+  --text-color: #f9fafb;
+  --muted-text: #9ca3af;
+  --border-color: #334155;
+}

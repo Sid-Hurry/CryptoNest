@@ -41,140 +41,161 @@ const Coin = () => {
 
   if (!coin) {
     return (
-      <div className="mt-32 text-center text-gray-500">
+      <div
+        className="mt-32 text-center"
+        style={{ color: "var(--muted-text)" }}
+      >
         Loading coin data...
       </div>
     );
   }
 
   return (
-    <main className="max-w-5xl mx-auto mt-20 px-4">
+    <main
+      style={{
+        backgroundColor: "var(--bg-color)",
+        color: "var(--text-color)",
+      }}
+      className="px-4"
+    >
+      <div className="max-w-5xl mx-auto pt-24 pb-16">
 
-      {/* Header wrapper */}
-      <div className="relative mb-12">
+        {/* Header */}
+        <div className="relative mb-14">
 
-        {/* Back Button (absolute, does NOT affect layout) */}
-        <button
-          onClick={() => navigate(-1)}
-          className="absolute right-0 top-0
-                     flex items-center gap-1
-                     px-3 py-1.5
-                     text-sm font-medium
-                     border border-red-500
-                     rounded-md
-                     text-red-600
-                     cursor-pointer
-                     hover:bg-red-50 hover:text-red-700
-                     transition"
-        >
-          ← Back
-        </button>
-
-        {/* Coin Header (perfectly centered) */}
-        <div className="flex flex-col items-center text-center">
-          <img
-            src={coin.image}
-            alt={coin.name}
-            className="w-16 h-16 mb-4"
-          />
-
-          {/* Name + Rank */}
-          <div className="relative inline-flex items-center justify-center">
-            <h1 className="text-4xl font-bold text-gray-900">
-              {coin.name}
-            </h1>
-
-            {localRank > 0 && (
-              <span
-                className="absolute -right-12
-                           px-3 py-1 text-sm font-semibold
-                           border border-gray-300 rounded-full
-                           text-gray-700"
-              >
-                #{localRank}
-              </span>
-            )}
-          </div>
-
-          <p className="uppercase text-gray-500 tracking-wider mt-1">
-            {coin.symbol}
-          </p>
-        </div>
-      </div>
-
-      {/* Stats */}
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-6 mb-12">
-
-        <div className="border border-gray-200 rounded-lg p-4">
-          <p className="text-sm text-gray-500">Current Price</p>
-          <p className="text-lg font-semibold text-gray-900">
-            {currency.symbol}
-            {coin.current_price.toLocaleString()}
-          </p>
-        </div>
-
-        <div className="border border-gray-200 rounded-lg p-4">
-          <p className="text-sm text-gray-500">24h Change</p>
-          <p
-            className={`text-lg font-semibold ${
-              coin.price_change_percentage_24h >= 0
-                ? "text-green-600"
-                : "text-red-600"
-            }`}
+          {/* Back Button */}
+          <button
+            onClick={() => navigate(-1)}
+            className="absolute right-0 top-0
+                       flex items-center gap-1
+                       px-3 py-1.5 text-sm font-medium
+                       rounded-md transition hover:opacity-80"
+            style={{
+              border: "1px solid #ef4444",
+              color: "#ef4444",
+            }}
           >
-            {coin.price_change_percentage_24h.toFixed(2)}%
-          </p>
+            ← Back
+          </button>
+
+          {/* Coin Info */}
+          <div className="flex flex-col items-center text-center">
+            <img
+              src={coin.image}
+              alt={coin.name}
+              className="w-16 h-16 mb-4"
+            />
+
+            {/* Name + Rank */}
+            <div className="relative inline-flex items-center justify-center">
+              <h1 className="text-4xl font-bold">
+                {coin.name}
+              </h1>
+
+              {localRank > 0 && (
+                <span
+                  className="absolute -right-14 px-3 py-1 text-sm font-semibold rounded-full"
+                  style={{
+                    border: "1px solid var(--border-color)",
+                    color: "var(--muted-text)",
+                  }}
+                >
+                  #{localRank}
+                </span>
+              )}
+            </div>
+
+            <p
+              className="uppercase tracking-wider mt-1"
+              style={{ color: "var(--muted-text)" }}
+            >
+              {coin.symbol}
+            </p>
+          </div>
         </div>
 
-        <div className="border border-gray-200 rounded-lg p-4">
-          <p className="text-sm text-gray-500">Market Cap</p>
-          <p className="text-lg font-semibold text-gray-900">
-            {currency.symbol}
-            {coin.market_cap.toLocaleString()}
-          </p>
+        {/* Stats */}
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-6 mb-14">
+
+          {[
+            {
+              label: "Current Price",
+              value: `${currency.symbol}${coin.current_price.toLocaleString()}`,
+            },
+            {
+              label: "24h Change",
+              value: `${coin.price_change_percentage_24h.toFixed(2)}%`,
+              color:
+                coin.price_change_percentage_24h >= 0
+                  ? "text-green-600"
+                  : "text-red-600",
+            },
+            {
+              label: "Market Cap",
+              value: `${currency.symbol}${coin.market_cap.toLocaleString()}`,
+            },
+            {
+              label: "24h High",
+              value: `${currency.symbol}${coin.high_24h.toLocaleString()}`,
+            },
+            {
+              label: "24h Low",
+              value: `${currency.symbol}${coin.low_24h.toLocaleString()}`,
+            },
+            {
+              label: "Volume",
+              value: `${currency.symbol}${coin.total_volume.toLocaleString()}`,
+            },
+          ].map((item) => (
+            <div
+              key={item.label}
+              className="rounded-lg p-4"
+              style={{
+                border: "1px solid var(--border-color)",
+                backgroundColor: "var(--bg-color)",
+              }}
+            >
+              <p
+                className="text-sm mb-1"
+                style={{ color: "var(--muted-text)" }}
+              >
+                {item.label}
+              </p>
+              <p
+                className={`text-lg font-semibold ${item.color || ""}`}
+              >
+                {item.value}
+              </p>
+            </div>
+          ))}
+
         </div>
 
-        <div className="border border-gray-200 rounded-lg p-4">
-          <p className="text-sm text-gray-500">24h High</p>
-          <p className="font-semibold text-gray-900">
-            {currency.symbol}
-            {coin.high_24h.toLocaleString()}
-          </p>
-        </div>
-
-        <div className="border border-gray-200 rounded-lg p-4">
-          <p className="text-sm text-gray-500">24h Low</p>
-          <p className="font-semibold text-gray-900">
-            {currency.symbol}
-            {coin.low_24h.toLocaleString()}
-          </p>
-        </div>
-
-        <div className="border border-gray-200 rounded-lg p-4">
-          <p className="text-sm text-gray-500">Volume</p>
-          <p className="font-semibold text-gray-900">
-            {currency.symbol}
-            {coin.total_volume.toLocaleString()}
-          </p>
-        </div>
-
-      </div>
-
-      {/* Chart */}
-      <div className="border border-gray-200 rounded-lg p-4">
-        <Chart
-          chartType="LineChart"
-          width="100%"
-          height="350px"
-          data={chartData}
-          options={{
-            legend: "none",
-            curveType: "function",
-            chartArea: { width: "85%", height: "70%" },
+        {/* Chart */}
+        <div
+          className="rounded-lg p-4"
+          style={{
+            border: "1px solid var(--border-color)",
+            backgroundColor: "var(--bg-color)",
           }}
-        />
-      </div>
+        >
+          <Chart
+            chartType="LineChart"
+            width="100%"
+            height="350px"
+            data={chartData}
+            options={{
+              legend: "none",
+              curveType: "function",
+              chartArea: { width: "85%", height: "70%" },
+              backgroundColor: "transparent",
+              hAxis: { textStyle: { color: "#9ca3af" } },
+              vAxis: { textStyle: { color: "#9ca3af" } },
+            }}
+          />
+        </div>
 
+      </div>
     </main>
   );
 };
