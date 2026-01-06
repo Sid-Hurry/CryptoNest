@@ -10,6 +10,7 @@ const Coin = () => {
 
   const [coin, setCoin] = useState(null);
   const [chartData, setChartData] = useState([]);
+  const [chartKey, setChartKey] = useState(0); // 👈 important
 
   const localRank =
     allcoins.findIndex((c) => c.id === coinID) + 1;
@@ -39,6 +40,16 @@ const Coin = () => {
     fetchChart();
   }, [coinID, currency]);
 
+  // 🔁 Force chart re-render on resize (MOBILE FIX)
+  useEffect(() => {
+    const handleResize = () => {
+      setChartKey((prev) => prev + 1);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   if (!coin) {
     return (
       <div
@@ -62,8 +73,6 @@ const Coin = () => {
 
         {/* Header */}
         <div className="relative mb-14">
-
-          {/* Back Button */}
           <button
             onClick={() => navigate(-1)}
             className="absolute right-0 top-0
@@ -78,7 +87,6 @@ const Coin = () => {
             ← Back
           </button>
 
-          {/* Coin Info */}
           <div className="flex flex-col items-center text-center">
             <img
               src={coin.image}
@@ -86,9 +94,8 @@ const Coin = () => {
               className="w-16 h-16 mb-4"
             />
 
-            {/* Name + Rank */}
             <div className="relative inline-flex items-center justify-center">
-              <h1 className="text-4xl font-bold">
+              <h1 className="text-3xl md:text-4xl font-bold">
                 {coin.name}
               </h1>
 
@@ -116,7 +123,6 @@ const Coin = () => {
 
         {/* Stats */}
         <div className="grid grid-cols-2 md:grid-cols-3 gap-6 mb-14">
-
           {[
             {
               label: "Current Price",
@@ -161,28 +167,26 @@ const Coin = () => {
               >
                 {item.label}
               </p>
-              <p
-                className={`text-lg font-semibold ${item.color || ""}`}
-              >
+              <p className={`text-lg font-semibold ${item.color || ""}`}>
                 {item.value}
               </p>
             </div>
           ))}
-
         </div>
 
         {/* Chart */}
         <div
-          className="rounded-lg p-4"
+          className="w-full rounded-lg p-3 md:p-4"
           style={{
             border: "1px solid var(--border-color)",
             backgroundColor: "var(--bg-color)",
           }}
         >
           <Chart
+            key={chartKey}
             chartType="LineChart"
             width="100%"
-            height="350px"
+            height={window.innerWidth < 640 ? "260px" : "350px"}
             data={chartData}
             options={{
               legend: "none",

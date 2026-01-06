@@ -15,16 +15,38 @@ const Compare = () => {
 
   const Row = ({ label, a, b, highlight }) => (
     <div
-      className="grid grid-cols-[2fr_1.5fr_1.5fr] px-6 py-4 items-center text-sm"
+      className="
+        grid grid-cols-[1.4fr_1fr_1fr]
+        md:grid-cols-[2fr_1.5fr_1.5fr]
+        px-4 md:px-6 py-4
+        items-center text-sm
+      "
       style={{ borderBottom: "1px solid var(--border-color)" }}
     >
-      <p style={{ color: "var(--muted-text)" }}>{label}</p>
+      <p
+        className="text-left"
+        style={{ color: "var(--muted-text)" }}
+      >
+        {label}
+      </p>
 
-      <p className={`text-center font-semibold ${highlight?.a || ""}`}>
+      <p
+        className={`
+          text-center font-semibold
+          break-all md:break-normal
+          ${highlight?.a || ""}
+        `}
+      >
         {a ?? "—"}
       </p>
 
-      <p className={`text-center font-semibold ${highlight?.b || ""}`}>
+      <p
+        className={`
+          text-center font-semibold
+          break-all md:break-normal
+          ${highlight?.b || ""}
+        `}
+      >
         {b ?? "—"}
       </p>
     </div>
@@ -32,7 +54,7 @@ const Compare = () => {
 
   return (
     <main
-      className="px-4 "
+      className="px-4 min-h-screen"
       style={{
         backgroundColor: "var(--bg-color)",
         color: "var(--text-color)",
@@ -101,39 +123,47 @@ const Compare = () => {
           >
             {/* Header */}
             <div
-              className="grid grid-cols-[2fr_1.5fr_1.5fr] px-6 py-5 text-sm font-semibold"
+              className="
+                grid grid-cols-[1.4fr_1fr_1fr]
+                md:grid-cols-[2fr_1.5fr_1.5fr]
+                px-4 md:px-6 py-5
+                text-sm font-semibold
+              "
               style={{
-                backgroundColor:
-                  "rgba(0,0,0,0.03)",
+                backgroundColor: "rgba(0,0,0,0.03)",
                 borderBottom: "1px solid var(--border-color)",
               }}
             >
               <p></p>
 
-              <div className="flex flex-col items-center">
+              <div className="flex flex-col items-center text-center">
                 {coinA ? (
                   <>
                     <img
                       src={coinA.image}
                       alt={coinA.name}
-                      className="w-8 h-8 mb-1"
+                      className="w-7 h-7 mb-1"
                     />
-                    <p>{coinA.name}</p>
+                    <p className="truncate max-w-[120px]">
+                      {coinA.name}
+                    </p>
                   </>
                 ) : (
                   "—"
                 )}
               </div>
 
-              <div className="flex flex-col items-center">
+              <div className="flex flex-col items-center text-center">
                 {coinB ? (
                   <>
                     <img
                       src={coinB.image}
                       alt={coinB.name}
-                      className="w-8 h-8 mb-1"
+                      className="w-7 h-7 mb-1"
                     />
-                    <p>{coinB.name}</p>
+                    <p className="truncate max-w-[120px]">
+                      {coinB.name}
+                    </p>
                   </>
                 ) : (
                   "—"

@@ -1,46 +1,82 @@
 import React, { useContext, useEffect, useState } from "react";
 import { coincontext } from "../context/coincontext";
+import { Link } from "react-router-dom";
 
 const StatCard = ({ label, value }) => (
   <div
-    className="rounded-xl p-5"
+    className="
+      rounded-xl p-5
+      flex flex-col
+      gap-2
+    "
     style={{
       backgroundColor: "var(--bg-color)",
       border: "1px solid var(--border-color)",
     }}
   >
-    <p className="text-sm" style={{ color: "var(--muted-text)" }}>
+    <p
+      className="text-sm"
+      style={{ color: "var(--muted-text)" }}
+    >
       {label}
     </p>
-    <p className="text-xl font-bold mt-2">{value}</p>
+
+    <p
+      className="
+        font-bold
+        text-lg md:text-xl
+        break-all
+        leading-tight
+      "
+    >
+      {value}
+    </p>
   </div>
 );
 
-const CoinRow = ({ coin, currency }) => (
-  <div
-    className="flex items-center justify-between px-4 py-3 text-sm"
-    style={{ borderBottom: "1px solid var(--border-color)" }}
-  >
-    <div className="flex items-center gap-3">
-      <img src={coin.image} alt={coin.name} className="w-6 h-6" />
-      <div>
-        <p className="font-semibold">{coin.name}</p>
-        <p className="text-xs uppercase" style={{ color: "var(--muted-text)" }}>
-          {coin.symbol}
-        </p>
-      </div>
-    </div>
-
-    <p
-      className={`font-semibold ${
-        coin.price_change_percentage_24h >= 0
-          ? "text-green-600"
-          : "text-red-600"
-      }`}
+const CoinRow = ({ coin }) => (
+  <Link to={`/coin/${coin.id}`} className="block">
+    <div
+      className="
+        flex items-center justify-between
+        px-4 py-3
+        text-sm
+        cursor-pointer
+        transition
+        hover:opacity-80
+      "
+      style={{ borderBottom: "1px solid var(--border-color)" }}
     >
-      {coin.price_change_percentage_24h.toFixed(2)}%
-    </p>
-  </div>
+      <div className="flex items-center gap-3 min-w-0">
+        <img
+          src={coin.image}
+          alt={coin.name}
+          className="w-6 h-6 flex-shrink-0"
+        />
+        <div className="min-w-0">
+          <p className="font-semibold truncate">
+            {coin.name}
+          </p>
+          <p
+            className="text-xs uppercase truncate"
+            style={{ color: "var(--muted-text)" }}
+          >
+            {coin.symbol}
+          </p>
+        </div>
+      </div>
+
+      <p
+        className={`font-semibold text-right whitespace-nowrap ${
+          coin.price_change_percentage_24h >= 0
+            ? "text-green-600"
+            : "text-red-600"
+        }`}
+      >
+        {coin.price_change_percentage_24h.toFixed(2)}%
+      </p>
+    </div>
+  </Link>
 );
 
 const Market = () => {
@@ -77,7 +113,9 @@ const Market = () => {
 
         {/* Heading */}
         <div className="text-center mb-14">
-          <h1 className="text-4xl font-extrabold">Market Overview</h1>
+          <h1 className="text-4xl font-extrabold">
+            Market Overview
+          </h1>
           <p
             className="mt-4 text-lg max-w-xl mx-auto"
             style={{ color: "var(--muted-text)" }}
@@ -88,21 +126,26 @@ const Market = () => {
 
         {/* Stats */}
         {marketData && (
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-20">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-20">
             <StatCard
               label="Total Market Cap"
-              value={`${currency.symbol}${marketData.total_market_cap[currency.name.toLowerCase()].toLocaleString()}`}
+              value={`${currency.symbol}${marketData.total_market_cap[
+                currency.name.toLowerCase()
+              ].toLocaleString()}`}
             />
+
             <StatCard
               label="24h Market Change"
               value={`${marketData.market_cap_change_percentage_24h_usd.toFixed(
                 2
               )}%`}
             />
+
             <StatCard
               label="Bitcoin Dominance"
               value={`${marketData.market_cap_percentage.btc.toFixed(2)}%`}
             />
+
             <StatCard
               label="Active Cryptocurrencies"
               value={marketData.active_cryptocurrencies.toLocaleString()}
@@ -122,7 +165,7 @@ const Market = () => {
               Top Gainers (24h)
             </div>
             {topGainers.map((coin) => (
-              <CoinRow key={coin.id} coin={coin} currency={currency} />
+              <CoinRow key={coin.id} coin={coin} />
             ))}
           </div>
 
@@ -135,7 +178,7 @@ const Market = () => {
               Top Losers (24h)
             </div>
             {topLosers.map((coin) => (
-              <CoinRow key={coin.id} coin={coin} currency={currency} />
+              <CoinRow key={coin.id} coin={coin} />
             ))}
           </div>
 
