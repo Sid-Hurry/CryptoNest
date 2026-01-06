@@ -22,7 +22,7 @@ const Track = () => {
         backgroundColor: "var(--bg-color)",
         color: "var(--text-color)",
       }}
-      className="px-4"
+      className="px-4 min-h-screen"
     >
       <div className="max-w-7xl mx-auto pt-24 pb-16">
 
@@ -97,9 +97,7 @@ const Track = () => {
                     className="w-5 h-5"
                   />
                   <div>
-                    <p className="text-sm font-medium">
-                      {coin.name}
-                    </p>
+                    <p className="text-sm font-medium">{coin.name}</p>
                     <p
                       className="text-xs uppercase"
                       style={{ color: "var(--muted-text)" }}
@@ -114,11 +112,15 @@ const Track = () => {
         </div>
 
         {/* Table */}
-        <div className="overflow-x-auto">
+        <div className="w-full">
 
           {/* Header */}
           <div
-            className="grid grid-cols-5 px-4 py-3 text-sm font-semibold"
+            className="
+              grid grid-cols-4 md:grid-cols-5
+              px-3 md:px-4 py-3
+              text-sm font-semibold
+            "
             style={{
               borderBottom: "2px solid var(--border-color)",
               color: "var(--muted-text)",
@@ -128,7 +130,7 @@ const Track = () => {
             <p>Coin</p>
             <p className="text-right">Price</p>
             <p className="text-right">24h</p>
-            <p className="text-right">Market Cap</p>
+            <p className="hidden md:block text-right">Market Cap</p>
           </div>
 
           {/* Rows */}
@@ -137,7 +139,11 @@ const Track = () => {
               <Link
                 to={`/coin/${coin.id}`}
                 key={coin.id}
-                className="grid grid-cols-5 px-4 py-4 items-center text-sm transition"
+                className="
+                  grid grid-cols-4 md:grid-cols-5
+                  px-3 md:px-4 py-4
+                  items-center text-sm transition
+                "
                 style={{
                   borderBottom: "1px solid var(--border-color)",
                 }}
@@ -153,9 +159,7 @@ const Track = () => {
                     className="w-7 h-7"
                   />
                   <div>
-                    <p className="font-semibold">
-                      {coin.name}
-                    </p>
+                    <p className="font-semibold">{coin.name}</p>
                     <p
                       className="text-xs uppercase"
                       style={{ color: "var(--muted-text)" }}
@@ -182,8 +186,8 @@ const Track = () => {
                   {coin.price_change_percentage_24h.toFixed(2)}%
                 </p>
 
-                {/* Market Cap */}
-                <p className="text-right font-medium">
+                {/* Market Cap (desktop only) */}
+                <p className="hidden md:block text-right font-medium">
                   {currency.symbol}
                   {coin.market_cap.toLocaleString()}
                 </p>

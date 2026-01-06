@@ -8,13 +8,13 @@ const Footer = () => {
         borderTop: "1px solid var(--border-color)",
         color: "var(--muted-text)",
       }}
-      className="w-full "
+      className="w-full"
     >
       <div
         className="
           max-w-6xl mx-auto px-4 py-6
           grid grid-cols-1 md:grid-cols-3
-          items-center gap-4
+          items-center gap-6
           text-sm
         "
       >
@@ -39,9 +39,13 @@ const Footer = () => {
         </p>
 
         {/* Right: Contact + Icons */}
-        <div className="flex items-center justify-center md:justify-end gap-5">
-
-          {/* Contact Us */}
+        <div
+          className="
+            flex flex-wrap items-center justify-center
+            md:justify-end gap-4
+          "
+        >
+          {/* Contact label */}
           <span
             className="font-medium"
             style={{ color: "var(--text-color)" }}
@@ -102,7 +106,6 @@ const Footer = () => {
               <path d="M19 0h-14c-2.8 0-5 2.2-5 5v14c0 2.8 2.2 5 5 5h14c2.8 0 5-2.2 5-5v-14c0-2.8-2.2-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.3c-1 0-1.8-.8-1.8-1.8s.8-1.8 1.8-1.8 1.8.8 1.8 1.8-.8 1.8-1.8 1.8zm13.5 11.3h-3v-5.5c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9v5.6h-3v-10h2.8v1.4h.1c.4-.8 1.4-1.7 3-1.7 3.2 0 3.8 2.1 3.8 4.9v6.4z" />
             </svg>
           </a>
-
         </div>
       </div>
     </footer>

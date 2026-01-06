@@ -94,9 +94,7 @@ const Home = () => {
                 >
                   <img src={coin.image} alt={coin.name} className="w-5 h-5" />
                   <div>
-                    <p className="text-sm font-medium">
-                      {coin.name}
-                    </p>
+                    <p className="text-sm font-medium">{coin.name}</p>
                     <p
                       className="text-xs uppercase"
                       style={{ color: "var(--muted-text)" }}
@@ -111,11 +109,15 @@ const Home = () => {
         </div>
 
         {/* Table */}
-        <div className="w-full mt-16 overflow-x-auto">
+        <div className="w-full mt-16">
 
           {/* Header */}
           <div
-            className="grid grid-cols-5 px-4 py-3 text-sm font-semibold"
+            className="
+              grid grid-cols-4 md:grid-cols-5
+              px-3 md:px-4 py-3
+              text-sm font-semibold
+            "
             style={{
               borderBottom: "2px solid var(--border-color)",
               color: "var(--muted-text)",
@@ -125,7 +127,7 @@ const Home = () => {
             <p>Coin</p>
             <p className="text-right">Price</p>
             <p className="text-right">24h</p>
-            <p className="text-right">Market Cap</p>
+            <p className="hidden md:block text-right">Market Cap</p>
           </div>
 
           {/* Rows */}
@@ -138,7 +140,11 @@ const Home = () => {
                 <Link
                   to={`/coin/${coin.id}`}
                   key={coin.id}
-                  className="grid grid-cols-5 px-4 py-4 items-center text-sm transition"
+                  className="
+                    grid grid-cols-4 md:grid-cols-5
+                    px-3 md:px-4 py-4
+                    items-center text-sm transition
+                  "
                   style={{
                     borderBottom: "1px solid var(--border-color)",
                   }}
@@ -152,9 +158,7 @@ const Home = () => {
                       className="w-7 h-7"
                     />
                     <div>
-                      <p className="font-semibold">
-                        {coin.name}
-                      </p>
+                      <p className="font-semibold">{coin.name}</p>
                       <p
                         className="text-xs uppercase"
                         style={{ color: "var(--muted-text)" }}
@@ -179,7 +183,7 @@ const Home = () => {
                     {coin.price_change_percentage_24h.toFixed(2)}%
                   </p>
 
-                  <p className="text-right font-medium">
+                  <p className="hidden md:block text-right font-medium">
                     {currency.symbol}
                     {coin.market_cap.toLocaleString()}
                   </p>
