@@ -22,27 +22,60 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="w-full px-6 py-4 bg-white shadow-sm flex items-center justify-between">
-      <Link to="/" className="text-xl font-bold text-gray-900">
-        CryptoTrack
-      </Link>
-{/* Navigation */}
-      <ul className="flex gap-6 text-gray-700 font-medium">
-        <li><Link to="/">Home</Link></li>
-        <li><Link to="/about">About</Link></li>
-        <li><Link to="/track">Track</Link></li>
-      </ul>
+    <nav className="w-full sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200">
+      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
 
-      <select
-        value={currency.name}
-        onChange={currencyHandler}
-        className="border border-gray-300 rounded-lg px-3 py-1
-                   outline-none focus:outline-none focus:ring-0"
-      >
-        <option value="USD">USD ($)</option>
-        <option value="INR">INR (₹)</option>
-        <option value="EUR">EUR (€)</option>
-      </select>
+        {/* App Name */}
+        <Link
+          to="/"
+          className="text-2xl font-extrabold tracking-tight text-gray-900"
+        >
+          Cryptonest
+        </Link>
+
+        {/* Navigation */}
+        <ul className="hidden md:flex gap-8 text-gray-700 font-medium">
+          <li>
+            <Link
+              to="/"
+              className="hover:text-black transition-colors"
+            >
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/about"
+              className="hover:text-black transition-colors"
+            >
+              About
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/track"
+              className="hover:text-black transition-colors"
+            >
+              Track
+            </Link>
+          </li>
+        </ul>
+
+        {/* Currency Selector */}
+        <select
+          value={currency.name}
+          onChange={currencyHandler}
+          className="border border-gray-300 bg-white
+                     rounded-lg px-3 py-1.5
+                     text-sm text-gray-700
+                     outline-none focus:outline-none focus:ring-0
+                     hover:border-gray-400 transition"
+        >
+          <option value="USD">USD ($)</option>
+          <option value="INR">INR (₹)</option>
+          <option value="EUR">EUR (€)</option>
+        </select>
+      </div>
     </nav>
   );
 };
