@@ -1,30 +1,34 @@
-import React from 'react'
-import Navbar from './components/Navbar.jsx'
-import { Routes,Route } from 'react-router-dom'
-import Home from './pages/Home.jsx'
-// import About from './pages/About.jsx'
-// import Features from './pages/Features.jsx'
-import Coin from './pages/Coin.jsx'
-import Footer from './components/Footer.jsx'
-import About from './pages/about.jsx'
-import Track from './pages/track.jsx'
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import { Routes, Route } from "react-router-dom";
 
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Track from "./pages/Track";
+import Compare from "./pages/Compare";
+import Coin from "./pages/Coin";
 
-const App = () => {
+function App() {
   return (
-    <div className="">
+    <div className="min-h-screen flex flex-col">
+      {/* Navbar */}
       <Navbar />
-      <Routes>
-        {/* Define your routes here */}
-        <Route path="/" element={<Home />} />
-        <Route path="/coin/:coinID" element={<Coin />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/track" element={<Track />} />
-  
-      </Routes>
+
+      {/* Main Content */}
+      <main className="flex-grow">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/track" element={<Track />} />
+          <Route path="/compare" element={<Compare />} />
+          <Route path="/coin/:coinID" element={<Coin />} />
+        </Routes>
+      </main>
+
+      {/* Footer */}
       <Footer />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

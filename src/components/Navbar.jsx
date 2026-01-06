@@ -47,6 +47,9 @@ const Navbar = () => {
           <Link to="/track" className="hover:text-current">
             Track
           </Link>
+          <Link to="/compare" className="hover:text-current">
+            Compare
+          </Link>
         </div>
 
         {/* Right Controls */}
