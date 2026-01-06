@@ -32,13 +32,13 @@ const Compare = () => {
 
   return (
     <main
+      className="px-4 min-h-screen"
       style={{
         backgroundColor: "var(--bg-color)",
         color: "var(--text-color)",
       }}
-      className="px-4"
     >
-      <div className="max-w-6xl mx-auto pt-24 pb-16">
+      <div className="max-w-6xl mx-auto py-24">
 
         {/* Heading */}
         <div className="text-center mb-12">
@@ -103,7 +103,8 @@ const Compare = () => {
             <div
               className="grid grid-cols-[2fr_1.5fr_1.5fr] px-6 py-5 text-sm font-semibold"
               style={{
-                backgroundColor: "rgba(0,0,0,0.03)",
+                backgroundColor:
+                  "rgba(0,0,0,0.03)",
                 borderBottom: "1px solid var(--border-color)",
               }}
             >
