@@ -5,7 +5,7 @@ import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Track from "./pages/Track";
-import Compare from "./pages/Compare";
+import Compare from "./pages/compare";
 import Coin from "./pages/Coin";
 
 function App() {
