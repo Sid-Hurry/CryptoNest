@@ -1,18 +1,26 @@
 import React, { useContext, useState } from "react";
 import { coincontext } from "../context/coincontext";
 import { Link } from "react-router-dom";
+
 const Home = () => {
   const { allcoins, currency } = useContext(coincontext);
   const [search, setSearch] = useState("");
+  const [showSuggestions, setShowSuggestions] = useState(false);
 
-  // Filter based on search (ALWAYS from full list)
+  // Filter coins based on search
   const filteredCoins = allcoins.filter((coin) =>
     coin.name.toLowerCase().includes(search.toLowerCase())
   );
 
-  // Decide what to display
+  // Top 10 only when search is empty
   const displayCoins =
     search.trim() === "" ? filteredCoins.slice(0, 10) : filteredCoins;
+
+  // Suggestions (limit to 5)
+  const suggestions =
+    search.trim() === ""
+      ? []
+      : filteredCoins.slice(0, 5);
 
   return (
     <main className="flex flex-col items-center mt-24 px-4 text-center">
@@ -28,21 +36,59 @@ const Home = () => {
       </p>
 
       {/* Search */}
-      <div className="mt-8 flex w-full max-w-md">
-        <input
-          type="text"
-          placeholder="Search for a coin (e.g. Bitcoin)"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          className="flex-1 px-4 py-2 border border-gray-300 rounded-l-lg
-                     outline-none focus:outline-none focus:ring-0"
-        />
-        <button
-          className="px-6 py-2 border border-l-0 border-gray-300 rounded-r-lg
-                     font-medium hover:bg-gray-100"
-        >
-          Search
-        </button>
+      <div className="relative mt-8 w-full max-w-md">
+        <div className="flex">
+          <input
+            type="text"
+            placeholder="Search for a coin (e.g. Bitcoin)"
+            value={search}
+            onChange={(e) => {
+              setSearch(e.target.value);
+              setShowSuggestions(true);
+            }}
+            onFocus={() => setShowSuggestions(true)}
+            className="flex-1 px-4 py-2 border border-gray-300 rounded-l-lg
+                       outline-none focus:outline-none focus:ring-0"
+          />
+          <button
+            className="px-6 py-2 border border-l-0 border-gray-300 rounded-r-lg
+                       font-medium hover:bg-gray-100"
+          >
+            Search
+          </button>
+        </div>
+
+        {/* Suggestions Dropdown */}
+        {showSuggestions && suggestions.length > 0 && (
+          <div className="absolute z-10 w-full bg-white border border-gray-200
+                          rounded-lg mt-1 shadow-md text-left">
+            {suggestions.map((coin) => (
+              <div
+                key={coin.id}
+                onClick={() => {
+                  setSearch(coin.name);
+                  setShowSuggestions(false);
+                }}
+                className="flex items-center gap-3 px-4 py-2 cursor-pointer
+                           hover:bg-gray-100"
+              >
+                <img
+                  src={coin.image}
+                  alt={coin.name}
+                  className="w-5 h-5"
+                />
+                <div>
+                  <p className="text-sm font-medium text-gray-900">
+                    {coin.name}
+                  </p>
+                  <p className="text-xs text-gray-500 uppercase">
+                    {coin.symbol}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
 
       {/* Table */}
@@ -62,7 +108,6 @@ const Home = () => {
         {/* Rows */}
         {displayCoins.length > 0 ? (
           displayCoins.map((coin) => {
-            // Stable local rank (based on original list)
             const localRank =
               allcoins.findIndex((c) => c.id === coin.id) + 1;
 
@@ -74,12 +119,10 @@ const Home = () => {
                            border-b border-gray-200
                            hover:bg-gray-50 transition"
               >
-                {/* Rank */}
                 <p className="font-medium text-gray-800">
                   {localRank}
                 </p>
 
-                {/* Coin */}
                 <div className="flex items-center gap-3">
                   <img
                     src={coin.image}
@@ -96,23 +139,21 @@ const Home = () => {
                   </div>
                 </div>
 
-                {/* Price */}
                 <p className="text-right font-semibold text-gray-900">
                   {currency.symbol}
                   {coin.current_price.toLocaleString()}
                 </p>
 
-                {/* 24h Change */}
                 <p
-                  className={`text-right font-semibold ${coin.price_change_percentage_24h >= 0
+                  className={`text-right font-semibold ${
+                    coin.price_change_percentage_24h >= 0
                       ? "text-green-600"
                       : "text-red-600"
-                    }`}
+                  }`}
                 >
                   {coin.price_change_percentage_24h.toFixed(2)}%
                 </p>
 
-                {/* Market Cap */}
                 <p className="text-right font-medium text-gray-800">
                   {currency.symbol}
                   {coin.market_cap.toLocaleString()}
