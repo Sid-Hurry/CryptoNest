@@ -32,7 +32,7 @@ const Compare = () => {
 
   return (
     <main
-      className="px-4 min-h-screen"
+      className="px-4 "
       style={{
         backgroundColor: "var(--bg-color)",
         color: "var(--text-color)",
