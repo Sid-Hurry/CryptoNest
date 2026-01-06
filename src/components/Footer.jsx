@@ -24,11 +24,30 @@ const Footer = () => {
           <span className="font-semibold text-green-600">
             CoinGecko
           </span>
-          {" "}
         </p>
 
-        {/* Right: Social Icons */}
-        <div className="flex justify-center md:justify-end gap-5">
+        {/* Right: Contact + Icons */}
+        <div className="flex items-center justify-center md:justify-end gap-5">
+
+          {/* Contact Us (TEXT ONLY) */}
+          <span className="font-medium">
+            Contact Us
+          </span>
+
+          {/* Email */}
+          <a
+            href="mailto:siddharthhooda0013@gmail.com"
+            className="hover:text-gray-900 transition"
+            aria-label="Email"
+          >
+            <svg
+              className="w-5 h-5"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z" />
+            </svg>
+          </a>
 
           {/* GitHub */}
           <a
@@ -47,26 +66,24 @@ const Footer = () => {
             </svg>
           </a>
 
-          {/* Twitter */}
           {/* X (Twitter) */}
-<a
-  href="https://x.com/02_Opinionated?t=wkeK3m3p4Fpj7nUO3x0saw&s=09"
-  target="_blank"
-  rel="noopener noreferrer"
-  className="hover:text-gray-900 transition"
-  aria-label="X (Twitter)"
->
-  <svg
-    className="w-5 h-5"
-    fill="currentColor"
-    viewBox="0 0 24 24"
-  >
-    <path d="M18.244 2H21.49L14.37 10.193 22.5 22h-6.39l-4.99-6.78L5.7 22H2.45l7.6-8.7L2 2h6.55l4.51 6.19L18.244 2z" />
-  </svg>
-</a>
+          <a
+            href="https://x.com/02_Opinionated?t=wkeK3m3p4Fpj7nUO3x0saw&s=09"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-gray-900 transition"
+            aria-label="X (Twitter)"
+          >
+            <svg
+              className="w-5 h-5"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path d="M18.244 2H21.49L14.37 10.193 22.5 22h-6.39l-4.99-6.78L5.7 22H2.45l7.6-8.7L2 2h6.55l4.51 6.19L18.244 2z" />
+            </svg>
+          </a>
 
-
-          {/* LinkedIn (CLEAN ICON) */}
+          {/* LinkedIn */}
           <a
             href="https://www.linkedin.com/in/siddharth-hooda-188606324/"
             target="_blank"
