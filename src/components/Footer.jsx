@@ -32,7 +32,7 @@ const Footer = () => {
 
           {/* GitHub */}
           <a
-            href="#"
+            href="https://github.com/Sid-Hurry"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-gray-900 transition"
@@ -48,25 +48,27 @@ const Footer = () => {
           </a>
 
           {/* Twitter */}
-          <a
-            href="#"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-gray-900 transition"
-            aria-label="Twitter"
-          >
-            <svg
-              className="w-5 h-5"
-              fill="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path d="M23.4 4.8c-.8.4-1.7.6-2.6.8.9-.6 1.6-1.4 2-2.4-.9.5-1.9.9-2.9 1.1-1.8-1.9-4.9-1.1-5.8 1.3-.4.9-.3 1.9.1 2.8-3.7-.2-7-2-9.2-4.9-1.2 2.1-.6 4.9 1.5 6.2-.7 0-1.4-.2-2-.5 0 2.2 1.6 4.1 3.7 4.5-.6.2-1.3.2-2 .1.6 1.9 2.3 3.2 4.4 3.2-1.7 1.3-3.8 2-6 2-.4 0-.8 0-1.2-.1 2.2 1.4 4.7 2.2 7.4 2.2 8.9 0 13.8-7.5 13.8-14v-.6c1-.7 1.8-1.5 2.4-2.4z" />
-            </svg>
-          </a>
+          {/* X (Twitter) */}
+<a
+  href="https://x.com/02_Opinionated?t=wkeK3m3p4Fpj7nUO3x0saw&s=09"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="hover:text-gray-900 transition"
+  aria-label="X (Twitter)"
+>
+  <svg
+    className="w-5 h-5"
+    fill="currentColor"
+    viewBox="0 0 24 24"
+  >
+    <path d="M18.244 2H21.49L14.37 10.193 22.5 22h-6.39l-4.99-6.78L5.7 22H2.45l7.6-8.7L2 2h6.55l4.51 6.19L18.244 2z" />
+  </svg>
+</a>
+
 
           {/* LinkedIn (CLEAN ICON) */}
           <a
-            href="#"
+            href="https://www.linkedin.com/in/siddharth-hooda-188606324/"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-gray-900 transition"
