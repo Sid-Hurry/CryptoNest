@@ -7,22 +7,18 @@ const FAQItem = ({ question, answer }) => {
   return (
     <div
       onClick={() => setOpen(!open)}
-      className="rounded-lg px-5 py-4 cursor-pointer transition"
+      className="rounded-xl px-5 py-4 cursor-pointer transition"
       style={{
         border: "1px solid var(--border-color)",
         backgroundColor: "var(--bg-color)",
       }}
     >
-      <div className="flex justify-between items-center">
-        <p
-          className="font-medium"
-          style={{ color: "var(--text-color)" }}
-        >
+      <div className="flex justify-between items-center gap-4">
+        <p className="font-medium" style={{ color: "var(--text-color)" }}>
           {question}
         </p>
-
         <span
-          className={`transform transition-transform duration-300 ${
+          className={`transition-transform duration-300 ${
             open ? "rotate-90" : "rotate-0"
           }`}
           style={{ color: "var(--muted-text)" }}
@@ -47,92 +43,93 @@ const FAQItem = ({ question, answer }) => {
   );
 };
 
+const FeatureCard = ({ title, desc }) => (
+  <div
+    className="rounded-xl p-6 h-full"
+    style={{
+      backgroundColor: "var(--bg-color)",
+      border: "1px solid var(--border-color)",
+    }}
+  >
+    <h3 className="font-semibold mb-2" style={{ color: "var(--text-color)" }}>
+      {title}
+    </h3>
+    <p className="text-sm leading-relaxed" style={{ color: "var(--muted-text)" }}>
+      {desc}
+    </p>
+  </div>
+);
+
 const About = () => {
   return (
     <main
+      className="px-4"
       style={{
         backgroundColor: "var(--bg-color)",
         color: "var(--text-color)",
       }}
-      className="px-4"
     >
       <div className="max-w-6xl mx-auto pt-24 pb-16">
 
         {/* Logo + Intro */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-20">
           <img
             src={logo}
             alt="Cryptonest Logo"
-            className="mx-auto w-28 mb-8"
+            className="mx-auto w-24 md:w-28 mb-8"
           />
 
-          <p
-            className="text-lg max-w-3xl mx-auto leading-relaxed"
-            style={{ color: "var(--muted-text)" }}
-          >
-            Cryptonest is a simple and powerful cryptocurrency tracking platform
-            that helps you monitor live prices explore market trends and analyze
-            digital assets with clarity and confidence. Whether you are checking
-            prices casually or following the market closely Cryptonest keeps
-            everything clean fast and accessible.
-          </p>
+          <h1 className="text-3xl md:text-4xl font-extrabold mb-6">
+            About Cryptonest
+          </h1>
 
           <p
-            className="mt-8 font-semibold"
-            style={{ color: "var(--text-color)" }}
+            className="text-base md:text-lg max-w-3xl mx-auto leading-relaxed"
+            style={{ color: "var(--muted-text)" }}
           >
-            Curious to explore the crypto market Just start tracking your favorite coins
+            Cryptonest is a modern cryptocurrency tracking platform designed to
+            give you clear, fast, and reliable insights into the crypto market.
+            From live prices to market trends and detailed coin analysis,
+            Cryptonest helps you stay informed without unnecessary complexity.
+          </p>
+
+          <p className="mt-6 font-medium">
+            Built for learners, traders, and crypto enthusiasts alike.
           </p>
         </div>
 
-        {/* Feature Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-24">
+        {/* Features */}
+        <div className="mb-24">
+          <h2 className="text-2xl font-bold text-center mb-12">
+            What You Can Do With Cryptonest
+          </h2>
 
-          {[
-            {
-              title: "Live Market Data",
-              desc:
-                "View real time cryptocurrency prices with up to date market information presented in a clean and easy to understand format.",
-            },
-            {
-              title: "Detailed Coin Insights",
-              desc:
-                "Explore individual coin pages with price changes market cap volume and interactive charts to better understand performance.",
-            },
-            {
-              title: "Currency Flexibility",
-              desc:
-                "Switch between USD INR and EUR seamlessly to view prices in the currency that matters most to you.",
-            },
-            {
-              title: "Simple and Fast",
-              desc:
-                "Cryptonest is built for speed and simplicity ensuring smooth navigation and a distraction free experience across all devices.",
-            },
-          ].map((item) => (
-            <div
-              key={item.title}
-              className="rounded-xl p-6 transition"
-              style={{
-                backgroundColor: "var(--bg-color)",
-                border: "1px solid var(--border-color)",
-              }}
-            >
-              <h3
-                className="font-semibold mb-2"
-                style={{ color: "var(--text-color)" }}
-              >
-                {item.title}
-              </h3>
-              <p
-                className="text-sm leading-relaxed"
-                style={{ color: "var(--muted-text)" }}
-              >
-                {item.desc}
-              </p>
-            </div>
-          ))}
-
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <FeatureCard
+              title="Live Price Tracking"
+              desc="Track real-time cryptocurrency prices with accurate market data and percentage changes updated continuously."
+            />
+            <FeatureCard
+              title="Detailed Coin Pages"
+              desc="Analyze individual coins with charts, market cap, volume, 24h highs/lows, and historical trends."
+            />
+            <FeatureCard
+              title="Compare Cryptocurrencies"
+              desc="Compare two cryptocurrencies side by side to evaluate performance, price movement, and market strength."
+            />
+            <FeatureCard
+              title="Global Market Overview"
+              desc="Get a snapshot of the global crypto market including total market cap, Bitcoin dominance, and movers."
+            />
+            <FeatureCard
+              title="Multi-Currency Support"
+              desc="View prices in USD, INR, or EUR seamlessly based on your preference."
+            />
+            <FeatureCard
+              title="Light & Dark Theme"
+              desc="Enjoy a clean, accessible interface with a theme that adapts to your viewing preference."
+            />
+          </div>
         </div>
 
         {/* FAQ */}
@@ -143,26 +140,30 @@ const About = () => {
 
           <div className="space-y-4">
             <FAQItem
-              question="Is Cryptonest free to use"
-              answer="Yes Cryptonest is completely free and does not require any subscription or payment."
+              question="Is Cryptonest free to use?"
+              answer="Yes. Cryptonest is completely free and does not require any subscription, payment, or account creation."
             />
             <FAQItem
-              question="Do I need to create an account"
-              answer="No account or sign up is required You can start tracking cryptocurrencies instantly."
+              question="Do I need to sign up to use Cryptonest?"
+              answer="No sign-up is required. You can explore prices, track coins, and compare cryptocurrencies instantly."
             />
             <FAQItem
-              question="Where does the market data come from"
-              answer="Cryptonest uses reliable public cryptocurrency APIs to fetch accurate and up to date market information."
+              question="Where does the data come from?"
+              answer="Cryptonest uses reliable public cryptocurrency APIs such as CoinGecko to ensure accurate and up-to-date market data."
             />
             <FAQItem
-              question="Can I search for specific coins"
-              answer="Yes you can search and explore individual cryptocurrencies easily using the built in search feature."
+              question="How often is the data updated?"
+              answer="Prices and market data are refreshed frequently to reflect real-time changes in the crypto market."
+            />
+            <FAQItem
+              question="Can I use Cryptonest on mobile?"
+              answer="Yes. Cryptonest is fully responsive and optimized for mobile, tablet, and desktop devices."
             />
           </div>
         </div>
 
-        {/* GitHub Button */}
-        <div className="mt-12 flex justify-center">
+        {/* GitHub */}
+        <div className="mt-14 flex justify-center">
           <a
             href="https://github.com/Sid-Hurry/CryptoNest"
             target="_blank"
