@@ -7,6 +7,7 @@ import About from "./pages/about";
 import Track from "./pages/track";
 import Compare from "./pages/compare";
 import Coin from "./pages/Coin";
+import Market from "./pages/Market";
 
 function App() {
   return (
@@ -20,6 +21,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/track" element={<Track />} />
+          <Route path="/market" element={<Market />} />
+
           <Route path="/compare" element={<Compare />} />
           <Route path="/coin/:coinID" element={<Coin />} />
         </Routes>

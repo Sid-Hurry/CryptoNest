@@ -50,6 +50,9 @@ const Navbar = () => {
           <Link to="/compare" className="hover:text-current">
             Compare
           </Link>
+          <Link to="/market" className="hover:text-current">
+            Market
+          </Link>
         </div>
 
         {/* Right Controls */}
