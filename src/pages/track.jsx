@@ -3,13 +3,13 @@ import { coincontext } from "../context/coincontext";
 import { Link } from "react-router-dom";
 
 const Track = () => {
-  const { allcoins, currency } = useContext(coincontext);
+  const { allcoins = [], currency = {} } = useContext(coincontext);
   const [search, setSearch] = useState("");
   const [showSuggestions, setShowSuggestions] = useState(false);
 
-  // Filter coins
+  // Filter coins safely
   const filteredCoins = allcoins.filter((coin) =>
-    coin.name.toLowerCase().includes(search.toLowerCase())
+    coin?.name?.toLowerCase().includes(search.toLowerCase())
   );
 
   // Suggestions (top 5)
@@ -35,7 +35,7 @@ const Track = () => {
             className="mt-4 text-lg max-w-xl mx-auto"
             style={{ color: "var(--muted-text)" }}
           >
-            Explore the complete cryptocurrency market with real time prices
+            Explore the complete cryptocurrency market with real time prices,
             market capitalization and daily performance.
           </p>
         </div>
@@ -92,17 +92,17 @@ const Track = () => {
                   className="flex items-center gap-3 px-4 py-2 cursor-pointer hover:opacity-80"
                 >
                   <img
-                    src={coin.image}
-                    alt={coin.name}
+                    src={coin?.image}
+                    alt={coin?.name}
                     className="w-5 h-5"
                   />
                   <div>
-                    <p className="text-sm font-medium">{coin.name}</p>
+                    <p className="text-sm font-medium">{coin?.name}</p>
                     <p
                       className="text-xs uppercase"
                       style={{ color: "var(--muted-text)" }}
                     >
-                      {coin.symbol}
+                      {coin?.symbol}
                     </p>
                   </div>
                 </div>
@@ -116,11 +116,7 @@ const Track = () => {
 
           {/* Header */}
           <div
-            className="
-              grid grid-cols-4 md:grid-cols-5
-              px-3 md:px-4 py-3
-              text-sm font-semibold
-            "
+            className="grid grid-cols-4 md:grid-cols-5 px-3 md:px-4 py-3 text-sm font-semibold"
             style={{
               borderBottom: "2px solid var(--border-color)",
               color: "var(--muted-text)",
@@ -135,64 +131,66 @@ const Track = () => {
 
           {/* Rows */}
           {filteredCoins.length > 0 ? (
-            filteredCoins.map((coin, index) => (
-              <Link
-                to={`/coin/${coin.id}`}
-                key={coin.id}
-                className="
-                  grid grid-cols-4 md:grid-cols-5
-                  px-3 md:px-4 py-4
-                  items-center text-sm transition
-                "
-                style={{
-                  borderBottom: "1px solid var(--border-color)",
-                }}
-              >
-                {/* Rank */}
-                <p className="font-medium">{index + 1}</p>
+            filteredCoins.map((coin, index) => {
+              const price = coin?.current_price ?? 0;
+              const priceChange = coin?.price_change_percentage_24h ?? 0;
+              const marketCap = coin?.market_cap ?? 0;
 
-                {/* Coin */}
-                <div className="flex items-center gap-3">
-                  <img
-                    src={coin.image}
-                    alt={coin.name}
-                    className="w-7 h-7"
-                  />
-                  <div>
-                    <p className="font-semibold">{coin.name}</p>
-                    <p
-                      className="text-xs uppercase"
-                      style={{ color: "var(--muted-text)" }}
-                    >
-                      {coin.symbol}
-                    </p>
-                  </div>
-                </div>
-
-                {/* Price */}
-                <p className="text-right font-semibold">
-                  {currency.symbol}
-                  {coin.current_price.toLocaleString()}
-                </p>
-
-                {/* 24h Change */}
-                <p
-                  className={`text-right font-semibold ${
-                    coin.price_change_percentage_24h >= 0
-                      ? "text-green-600"
-                      : "text-red-600"
-                  }`}
+              return (
+                <Link
+                  to={`/coin/${coin.id}`}
+                  key={coin.id}
+                  className="grid grid-cols-4 md:grid-cols-5 px-3 md:px-4 py-4 items-center text-sm transition"
+                  style={{
+                    borderBottom: "1px solid var(--border-color)",
+                  }}
                 >
-                  {coin.price_change_percentage_24h.toFixed(2)}%
-                </p>
+                  {/* Rank */}
+                  <p className="font-medium">{index + 1}</p>
 
-                {/* Market Cap (desktop only) */}
-                <p className="hidden md:block text-right font-medium">
-                  {currency.symbol}
-                  {coin.market_cap.toLocaleString()}
-                </p>
-              </Link>
-            ))
+                  {/* Coin */}
+                  <div className="flex items-center gap-3">
+                    <img
+                      src={coin?.image}
+                      alt={coin?.name}
+                      className="w-7 h-7"
+                    />
+                    <div>
+                      <p className="font-semibold">{coin?.name}</p>
+                      <p
+                        className="text-xs uppercase"
+                        style={{ color: "var(--muted-text)" }}
+                      >
+                        {coin?.symbol}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Price */}
+                  <p className="text-right font-semibold">
+                    {currency?.symbol || "$"}
+                    {price.toLocaleString()}
+                  </p>
+
+                  {/* 24h Change */}
+                  <p
+                    className={`text-right font-semibold ${
+                      priceChange >= 0
+                        ? "text-green-600"
+                        : "text-red-600"
+                    }`}
+                  >
+                    {priceChange.toFixed(2)}%
+                  </p>
+
+                  {/* Market Cap */}
+                  <p className="hidden md:block text-right font-medium">
+                    {currency?.symbol || "$"}
+                    {marketCap.toLocaleString()}
+                  </p>
+                </Link>
+              );
+            })
           ) : (
             <p
               className="text-center py-12"
