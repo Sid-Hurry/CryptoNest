@@ -17,13 +17,7 @@ const Track = () => {
     search.trim() === "" ? [] : filteredCoins.slice(0, 5);
 
   return (
-    <main
-      style={{
-        backgroundColor: "var(--bg-color)",
-        color: "var(--text-color)",
-      }}
-      className="px-4 min-h-screen"
-    >
+    <main className="px-4 min-h-screen bg-background text-foreground">
       <div className="max-w-7xl mx-auto pt-24 pb-16">
 
         {/* Heading */}
@@ -31,10 +25,7 @@ const Track = () => {
           <h1 className="text-4xl font-extrabold">
             Track All Cryptocurrencies
           </h1>
-          <p
-            className="mt-4 text-lg max-w-xl mx-auto"
-            style={{ color: "var(--muted-text)" }}
-          >
+          <p className="mt-4 text-lg max-w-xl mx-auto text-muted">
             Explore the complete cryptocurrency market with real time prices,
             market capitalization and daily performance.
           </p>
@@ -52,22 +43,11 @@ const Track = () => {
                 setShowSuggestions(true);
               }}
               onFocus={() => setShowSuggestions(true)}
-              className="flex-1 px-4 py-2 rounded-l-lg outline-none"
-              style={{
-                backgroundColor: "var(--bg-color)",
-                color: "var(--text-color)",
-                border: "1px solid var(--border-color)",
-              }}
+              className="flex-1 px-4 py-2 rounded-l-lg outline-none bg-background text-foreground border border-border focus:border-muted transition-colors"
             />
 
             <button
-              className="px-6 py-2 rounded-r-lg font-medium transition hover:opacity-80"
-              style={{
-                border: "1px solid var(--border-color)",
-                borderLeft: "none",
-                color: "var(--text-color)",
-                backgroundColor: "var(--bg-color)",
-              }}
+              className="px-6 py-2 rounded-r-lg font-medium border border-border border-l-0 text-foreground bg-background hover:bg-muted/5 transition-colors"
             >
               Search
             </button>
@@ -76,11 +56,7 @@ const Track = () => {
           {/* Suggestions */}
           {showSuggestions && suggestions.length > 0 && (
             <div
-              className="absolute z-10 w-full mt-1 rounded-lg shadow-md"
-              style={{
-                backgroundColor: "var(--bg-color)",
-                border: "1px solid var(--border-color)",
-              }}
+              className="absolute z-10 w-full mt-1 rounded-lg shadow-lg bg-background border border-border overflow-hidden"
             >
               {suggestions.map((coin) => (
                 <div
@@ -99,8 +75,7 @@ const Track = () => {
                   <div>
                     <p className="text-sm font-medium">{coin?.name}</p>
                     <p
-                      className="text-xs uppercase"
-                      style={{ color: "var(--muted-text)" }}
+                      className="text-xs uppercase text-muted"
                     >
                       {coin?.symbol}
                     </p>
@@ -116,11 +91,7 @@ const Track = () => {
 
           {/* Header */}
           <div
-            className="grid grid-cols-4 md:grid-cols-5 px-3 md:px-4 py-3 text-sm font-semibold"
-            style={{
-              borderBottom: "2px solid var(--border-color)",
-              color: "var(--muted-text)",
-            }}
+            className="grid grid-cols-4 md:grid-cols-5 px-3 md:px-4 py-3 text-sm font-semibold border-b border-border text-muted mb-2"
           >
             <p>#</p>
             <p>Coin</p>
@@ -140,10 +111,7 @@ const Track = () => {
                 <Link
                   to={`/coin/${coin.id}`}
                   key={coin.id}
-                  className="grid grid-cols-4 md:grid-cols-5 px-3 md:px-4 py-4 items-center text-sm transition"
-                  style={{
-                    borderBottom: "1px solid var(--border-color)",
-                  }}
+                  className="grid grid-cols-4 md:grid-cols-5 px-3 md:px-4 py-4 items-center text-sm transition-all duration-300 rounded-xl hover:bg-muted/5 hover:scale-[1.01] hover:shadow-sm"
                 >
                   {/* Rank */}
                   <p className="font-medium">{index + 1}</p>
@@ -158,8 +126,7 @@ const Track = () => {
                     <div>
                       <p className="font-semibold">{coin?.name}</p>
                       <p
-                        className="text-xs uppercase"
-                        style={{ color: "var(--muted-text)" }}
+                        className="text-xs uppercase text-muted"
                       >
                         {coin?.symbol}
                       </p>
@@ -193,8 +160,7 @@ const Track = () => {
             })
           ) : (
             <p
-              className="text-center py-12"
-              style={{ color: "var(--muted-text)" }}
+              className="text-center py-12 text-muted"
             >
               No coins found
             </p>

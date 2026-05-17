@@ -27,27 +27,21 @@ const Navbar = () => {
 
   return (
     <nav
-      className="w-full sticky top-0 z-50"
-      style={{
-        backgroundColor: "var(--bg-color)",
-        borderBottom: "1px solid var(--border-color)",
-      }}
+      className="w-full sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b border-border"
     >
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
 
         {/* Logo */}
         <Link
           to="/"
-          className="text-xl font-bold tracking-tight"
-          style={{ color: "var(--text-color)" }}
+          className="text-xl font-bold tracking-tight text-foreground"
         >
           Cryptonest
         </Link>
 
         {/* Desktop Navigation */}
         <div
-          className="hidden md:flex gap-6 text-sm font-medium"
-          style={{ color: "var(--muted-text)" }}
+          className="hidden md:flex gap-6 text-sm font-medium text-muted"
         >
           <NavLink to="/">Home</NavLink>
           <NavLink to="/market">Market</NavLink>
@@ -63,12 +57,7 @@ const Navbar = () => {
           <select
             value={currency.name}
             onChange={currencyHandler}
-            className="px-3 py-1.5 rounded-md text-sm outline-none"
-            style={{
-              backgroundColor: "var(--bg-color)",
-              color: "var(--text-color)",
-              border: "1px solid var(--border-color)",
-            }}
+            className="px-3 py-1.5 rounded-md text-sm outline-none bg-background text-foreground border border-border"
           >
             <option value="USD">USD ($)</option>
             <option value="INR">INR (₹)</option>
@@ -78,12 +67,7 @@ const Navbar = () => {
           {/* Theme Toggle */}
           <button
             onClick={toggleTheme}
-            className="px-3 py-1.5 rounded-md text-sm"
-            style={{
-              backgroundColor: "transparent",
-              color: "var(--text-color)",
-              border: "1px solid var(--border-color)",
-            }}
+            className="px-3 py-1.5 rounded-md text-sm bg-transparent text-foreground border border-border cursor-pointer transition hover:bg-muted/10"
           >
             {theme === "light" ? "🌙" : "☀️"}
           </button>
@@ -91,8 +75,7 @@ const Navbar = () => {
           {/* Hamburger */}
           <button
             onClick={() => setOpen(!open)}
-            className="md:hidden text-xl ml-1"
-            style={{ color: "var(--text-color)" }}
+            className="md:hidden text-xl ml-1 text-foreground cursor-pointer"
           >
             ☰
           </button>
@@ -103,11 +86,7 @@ const Navbar = () => {
       {/* Mobile Menu */}
       {open && (
   <div
-    className="md:hidden"
-    style={{
-      backgroundColor: "var(--bg-color)",
-      borderTop: "1px solid var(--border-color)",
-    }}
+    className="md:hidden bg-background border-t border-border"
   >
     <nav className="flex flex-col">
       {[
@@ -121,9 +100,7 @@ const Navbar = () => {
           key={item.to}
           to={item.to}
           onClick={() => setOpen(false)}
-          className="px-6 py-4 text-sm font-medium
-                     hover:bg-black/5 transition"
-          style={{ color: "var(--text-color)" }}
+          className="px-6 py-4 text-sm font-medium text-foreground hover:bg-muted/10 transition"
         >
           {item.label}
         </Link>

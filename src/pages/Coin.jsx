@@ -52,37 +52,21 @@ const Coin = () => {
 
   if (!coin) {
     return (
-      <div
-        className="mt-32 text-center"
-        style={{ color: "var(--muted-text)" }}
-      >
+      <div className="mt-32 text-center text-muted">
         Loading coin data...
       </div>
     );
   }
 
   return (
-    <main
-      style={{
-        backgroundColor: "var(--bg-color)",
-        color: "var(--text-color)",
-      }}
-      className="px-4"
-    >
+    <main className="px-4 min-h-screen bg-background text-foreground">
       <div className="max-w-5xl mx-auto pt-24 pb-16">
 
         {/* Header */}
         <div className="relative mb-14">
           <button
             onClick={() => navigate(-1)}
-            className="absolute right-0 top-0
-                       flex items-center gap-1
-                       px-3 py-1.5 text-sm font-medium
-                       rounded-md transition hover:opacity-80 cursor-pointer"
-            style={{
-              border: "1px solid #ef4444",
-              color: "#ef4444",
-            }}
+            className="absolute right-0 top-0 flex items-center gap-1 px-3 py-1.5 text-sm font-medium rounded-md transition hover:bg-muted/10 cursor-pointer border border-border text-muted hover:text-foreground"
           >
             ← Back
           </button>
@@ -101,11 +85,7 @@ const Coin = () => {
 
               {localRank > 0 && (
                 <span
-                  className="absolute -right-14 px-3 py-1 text-sm font-semibold rounded-full"
-                  style={{
-                    border: "1px solid var(--border-color)",
-                    color: "var(--muted-text)",
-                  }}
+                  className="absolute -right-14 px-3 py-1 text-sm font-semibold rounded-full border border-border text-muted"
                 >
                   #{localRank}
                 </span>
@@ -113,8 +93,7 @@ const Coin = () => {
             </div>
 
             <p
-              className="uppercase tracking-wider mt-1"
-              style={{ color: "var(--muted-text)" }}
+              className="uppercase tracking-wider mt-1 text-muted"
             >
               {coin.symbol}
             </p>
@@ -155,15 +134,10 @@ const Coin = () => {
           ].map((item) => (
             <div
               key={item.label}
-              className="rounded-lg p-4"
-              style={{
-                border: "1px solid var(--border-color)",
-                backgroundColor: "var(--bg-color)",
-              }}
+              className="rounded-xl p-5 border border-border bg-background shadow-sm hover:shadow-md transition-shadow"
             >
               <p
-                className="text-sm mb-1"
-                style={{ color: "var(--muted-text)" }}
+                className="text-sm mb-1 text-muted"
               >
                 {item.label}
               </p>
@@ -175,13 +149,7 @@ const Coin = () => {
         </div>
 
         {/* Chart */}
-        <div
-          className="w-full rounded-lg p-3 md:p-4"
-          style={{
-            border: "1px solid var(--border-color)",
-            backgroundColor: "var(--bg-color)",
-          }}
-        >
+        <div className="w-full rounded-xl p-4 md:p-6 border border-border bg-background shadow-sm">
           <Chart
             key={chartKey}
             chartType="LineChart"

@@ -20,14 +20,12 @@ const Home = () => {
   const suggestions =
     search.trim() === "" ? [] : filteredCoins.slice(0, 5);
 
+  const topGainers = [...allcoins]
+    .sort((a, b) => b.price_change_percentage_24h - a.price_change_percentage_24h)
+    .slice(0, 3);
+
   return (
-    <main
-      style={{
-        backgroundColor: "var(--bg-color)",
-        color: "var(--text-color)",
-      }}
-      className="min-h-screen px-4"
-    >
+    <main className="min-h-screen px-4 bg-background text-foreground">
       <div className="max-w-7xl mx-auto pt-24 pb-16">
 
         {/* Heading */}
@@ -36,13 +34,37 @@ const Home = () => {
             Track Crypto Prices in Real Time
           </h1>
           <p
-            className="mt-4 text-lg max-w-xl mx-auto"
-            style={{ color: "var(--muted-text)" }}
+            className="mt-4 text-lg max-w-xl mx-auto text-muted"
           >
             Monitor live cryptocurrency prices market trends and performance
             in one simple dashboard
           </p>
         </div>
+
+        {/* Top Movers Widget */}
+        {topGainers.length > 0 && search.trim() === "" && (
+          <div className="max-w-3xl mx-auto mb-12">
+            <p className="text-sm font-semibold mb-4 text-muted uppercase tracking-wider text-center">Top Gainers 24h</p>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              {topGainers.map((coin) => (
+                <Link
+                  to={`/coin/${coin.id}`}
+                  key={coin.id}
+                  className="flex items-center gap-3 p-4 rounded-xl border border-border bg-background hover:bg-muted/5 hover:scale-[1.02] transition-all duration-300"
+                >
+                  <img src={coin.image} alt={coin.name} className="w-8 h-8" />
+                  <div className="flex-1 min-w-0">
+                    <p className="font-semibold truncate">{coin.name}</p>
+                    <p className="text-xs uppercase text-muted truncate">{coin.symbol}</p>
+                  </div>
+                  <p className="text-green-600 font-semibold text-sm">
+                    +{coin.price_change_percentage_24h.toFixed(2)}%
+                  </p>
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* Search */}
         <div className="relative max-w-md mx-auto">
@@ -56,19 +78,10 @@ const Home = () => {
                 setShowSuggestions(true);
               }}
               onFocus={() => setShowSuggestions(true)}
-              className="flex-1 px-4 py-2 rounded-l-lg outline-none"
-              style={{
-                backgroundColor: "var(--bg-color)",
-                color: "var(--text-color)",
-                border: "1px solid var(--border-color)",
-              }}
+              className="flex-1 px-4 py-2 rounded-l-lg outline-none bg-background text-foreground border border-border focus:border-muted transition-colors"
             />
             <button
-              className="px-6 py-2 rounded-r-lg font-medium"
-              style={{
-                border: "1px solid var(--border-color)",
-                borderLeft: "none",
-              }}
+              className="px-6 py-2 rounded-r-lg font-medium border border-border border-l-0 hover:bg-muted/5 transition-colors"
             >
               Search
             </button>
@@ -77,11 +90,7 @@ const Home = () => {
           {/* Suggestions */}
           {showSuggestions && suggestions.length > 0 && (
             <div
-              className="absolute z-10 w-full mt-1 rounded-lg shadow-md"
-              style={{
-                backgroundColor: "var(--bg-color)",
-                border: "1px solid var(--border-color)",
-              }}
+              className="absolute z-10 w-full mt-1 rounded-lg shadow-lg bg-background border border-border overflow-hidden"
             >
               {suggestions.map((coin) => (
                 <div
@@ -96,8 +105,7 @@ const Home = () => {
                   <div>
                     <p className="text-sm font-medium">{coin.name}</p>
                     <p
-                      className="text-xs uppercase"
-                      style={{ color: "var(--muted-text)" }}
+                      className="text-xs uppercase text-muted"
                     >
                       {coin.symbol}
                     </p>
@@ -116,12 +124,8 @@ const Home = () => {
             className="
               grid grid-cols-4 md:grid-cols-5
               px-3 md:px-4 py-3
-              text-sm font-semibold
+              text-sm font-semibold border-b border-border text-muted mb-2
             "
-            style={{
-              borderBottom: "2px solid var(--border-color)",
-              color: "var(--muted-text)",
-            }}
           >
             <p>#</p>
             <p>Coin</p>
@@ -143,11 +147,9 @@ const Home = () => {
                   className="
                     grid grid-cols-4 md:grid-cols-5
                     px-3 md:px-4 py-4
-                    items-center text-sm transition
+                    items-center text-sm transition-all duration-300
+                    rounded-xl hover:bg-muted/5 hover:scale-[1.01] hover:shadow-sm
                   "
-                  style={{
-                    borderBottom: "1px solid var(--border-color)",
-                  }}
                 >
                   <p className="font-medium">{localRank}</p>
 
@@ -160,8 +162,7 @@ const Home = () => {
                     <div>
                       <p className="font-semibold">{coin.name}</p>
                       <p
-                        className="text-xs uppercase"
-                        style={{ color: "var(--muted-text)" }}
+                        className="text-xs uppercase text-muted"
                       >
                         {coin.symbol}
                       </p>
@@ -192,8 +193,7 @@ const Home = () => {
             })
           ) : (
             <p
-              className="text-center py-10"
-              style={{ color: "var(--muted-text)" }}
+              className="text-center py-10 text-muted"
             >
               No coins found
             </p>

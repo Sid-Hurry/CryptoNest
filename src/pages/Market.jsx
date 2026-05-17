@@ -4,20 +4,9 @@ import { Link } from "react-router-dom";
 
 const StatCard = ({ label, value }) => (
   <div
-    className="
-      rounded-xl p-5
-      flex flex-col
-      gap-2
-    "
-    style={{
-      backgroundColor: "var(--bg-color)",
-      border: "1px solid var(--border-color)",
-    }}
+    className="rounded-xl p-5 flex flex-col gap-2 bg-background border border-border"
   >
-    <p
-      className="text-sm"
-      style={{ color: "var(--muted-text)" }}
-    >
+    <p className="text-sm text-muted">
       {label}
     </p>
 
@@ -37,15 +26,7 @@ const StatCard = ({ label, value }) => (
 const CoinRow = ({ coin }) => (
   <Link to={`/coin/${coin.id}`} className="block">
     <div
-      className="
-        flex items-center justify-between
-        px-4 py-3
-        text-sm
-        cursor-pointer
-        transition
-        hover:opacity-80
-      "
-      style={{ borderBottom: "1px solid var(--border-color)" }}
+      className="flex items-center justify-between px-4 py-3 text-sm cursor-pointer transition-all duration-300 border-b border-border hover:bg-muted/5 hover:scale-[1.01] hover:shadow-sm"
     >
       <div className="flex items-center gap-3 min-w-0">
         <img
@@ -57,10 +38,7 @@ const CoinRow = ({ coin }) => (
           <p className="font-semibold truncate">
             {coin.name}
           </p>
-          <p
-            className="text-xs uppercase truncate"
-            style={{ color: "var(--muted-text)" }}
-          >
+          <p className="text-xs uppercase truncate text-muted">
             {coin.symbol}
           </p>
         </div>
@@ -102,13 +80,7 @@ const Market = () => {
     .slice(0, 5);
 
   return (
-    <main
-      className="px-4 min-h-screen"
-      style={{
-        backgroundColor: "var(--bg-color)",
-        color: "var(--text-color)",
-      }}
-    >
+    <main className="px-4 min-h-screen bg-background text-foreground">
       <div className="max-w-6xl mx-auto py-24">
 
         {/* Heading */}
@@ -116,10 +88,7 @@ const Market = () => {
           <h1 className="text-4xl font-extrabold">
             Market Overview
           </h1>
-          <p
-            className="mt-4 text-lg max-w-xl mx-auto"
-            style={{ color: "var(--muted-text)" }}
-          >
+          <p className="mt-4 text-lg max-w-xl mx-auto text-muted">
             A snapshot of the global cryptocurrency market and daily movers.
           </p>
         </div>
@@ -157,11 +126,8 @@ const Market = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
 
           {/* Gainers */}
-          <div
-            className="rounded-xl overflow-hidden"
-            style={{ border: "1px solid var(--border-color)" }}
-          >
-            <div className="px-4 py-3 font-semibold">
+          <div className="rounded-xl overflow-hidden border border-border bg-background">
+            <div className="px-4 py-3 font-semibold bg-muted/5 border-b border-border">
               Top Gainers (24h)
             </div>
             {topGainers.map((coin) => (
@@ -170,11 +136,8 @@ const Market = () => {
           </div>
 
           {/* Losers */}
-          <div
-            className="rounded-xl overflow-hidden"
-            style={{ border: "1px solid var(--border-color)" }}
-          >
-            <div className="px-4 py-3 font-semibold">
+          <div className="rounded-xl overflow-hidden border border-border bg-background">
+            <div className="px-4 py-3 font-semibold bg-muted/5 border-b border-border">
               Top Losers (24h)
             </div>
             {topLosers.map((coin) => (
