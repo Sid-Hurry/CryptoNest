@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import logo from "../assets/logo.png";
 
 const FAQItem = ({ question, answer }) => {
   const [open, setOpen] = useState(false);
@@ -55,13 +54,8 @@ const About = () => {
     <main className="px-4 text-foreground relative z-10">
       <div className="max-w-6xl mx-auto pt-24 pb-16">
 
-        {/* Logo + Intro */}
+        {/* Intro */}
         <div className="mb-20 border-b border-white/10 pb-10 flex flex-col items-center text-center">
-          <img
-            src={logo}
-            alt="Cryptonest Logo"
-            className="w-16 md:w-20 mb-6"
-          />
           <span className="text-xs font-semibold tracking-widest uppercase text-muted mb-3 block">Platform Information</span>
           <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-foreground to-muted">
             About Cryptonest

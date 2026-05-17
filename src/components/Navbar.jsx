@@ -22,10 +22,10 @@ const Navbar = () => {
       <Link
         to={to}
         onClick={() => setOpen(false)}
-        className={`px-3 py-2 rounded-lg transition-all duration-300 font-medium ${
+        className={`px-3 py-2 rounded-lg transition-all duration-300 ${
           isActive
-            ? "bg-foreground/10 text-foreground font-semibold shadow-sm"
-            : "text-muted hover:bg-foreground/5 hover:text-foreground"
+            ? "text-foreground font-bold"
+            : "text-muted font-medium hover:text-foreground hover:bg-foreground/5"
         }`}
       >
         {children}
@@ -115,10 +115,10 @@ const Navbar = () => {
                   key={item.to}
                   to={item.to}
                   onClick={() => setOpen(false)}
-                  className={`px-4 py-3 text-sm font-medium rounded-xl transition-colors ${
+                  className={`px-4 py-3 text-sm rounded-xl transition-colors ${
                     isActive
-                      ? "bg-foreground/10 text-foreground font-semibold"
-                      : "text-muted hover:bg-foreground/5 hover:text-foreground"
+                      ? "text-foreground font-bold"
+                      : "text-muted font-medium hover:text-foreground hover:bg-foreground/5"
                   }`}
                 >
                   {item.label}
