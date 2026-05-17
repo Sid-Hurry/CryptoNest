@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const StatCard = ({ label, value }) => (
   <div
-    className="rounded-xl p-5 flex flex-col gap-2 bg-background border border-border"
+    className="rounded-xl p-5 flex flex-col gap-2 glass-panel shadow-sm"
   >
     <p className="text-sm text-muted">
       {label}
@@ -26,7 +26,7 @@ const StatCard = ({ label, value }) => (
 const CoinRow = ({ coin }) => (
   <Link to={`/coin/${coin.id}`} className="block">
     <div
-      className="flex items-center justify-between px-4 py-3 text-sm cursor-pointer transition-all duration-300 border-b border-border hover:bg-muted/5 hover:scale-[1.01] hover:shadow-sm"
+      className="flex items-center justify-between px-4 py-3 text-sm cursor-pointer transition-all duration-300 border-b border-border hover:bg-white/5 hover:scale-[1.01] hover:shadow-sm"
     >
       <div className="flex items-center gap-3 min-w-0">
         <img
@@ -80,7 +80,7 @@ const Market = () => {
     .slice(0, 5);
 
   return (
-    <main className="px-4 min-h-screen bg-background text-foreground">
+    <main className="px-4 min-h-screen text-foreground relative z-10">
       <div className="max-w-6xl mx-auto py-24">
 
         {/* Heading */}
@@ -126,8 +126,8 @@ const Market = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
 
           {/* Gainers */}
-          <div className="rounded-xl overflow-hidden border border-border bg-background">
-            <div className="px-4 py-3 font-semibold bg-muted/5 border-b border-border">
+          <div className="rounded-xl overflow-hidden glass-panel shadow-sm">
+            <div className="px-4 py-3 font-semibold bg-white/5 border-b border-border">
               Top Gainers (24h)
             </div>
             {topGainers.map((coin) => (
@@ -136,8 +136,8 @@ const Market = () => {
           </div>
 
           {/* Losers */}
-          <div className="rounded-xl overflow-hidden border border-border bg-background">
-            <div className="px-4 py-3 font-semibold bg-muted/5 border-b border-border">
+          <div className="rounded-xl overflow-hidden glass-panel shadow-sm">
+            <div className="px-4 py-3 font-semibold bg-white/5 border-b border-border">
               Top Losers (24h)
             </div>
             {topLosers.map((coin) => (

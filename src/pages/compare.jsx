@@ -19,7 +19,7 @@ const Compare = () => {
         grid grid-cols-[1.4fr_1fr_1fr]
         md:grid-cols-[2fr_1.5fr_1.5fr]
         px-4 md:px-6 py-4
-        items-center text-sm border-b border-border hover:bg-muted/5 transition-colors
+        items-center text-sm border-b border-border hover:bg-white/5 transition-colors
       "
     >
       <p
@@ -51,7 +51,7 @@ const Compare = () => {
   );
 
   return (
-    <main className="px-4 min-h-screen bg-background text-foreground">
+    <main className="px-4 min-h-screen text-foreground relative z-10">
       <div className="max-w-6xl mx-auto py-24">
 
         {/* Heading */}
@@ -72,7 +72,7 @@ const Compare = () => {
           <select
             value={coinAId}
             onChange={(e) => setCoinAId(e.target.value)}
-            className="px-4 py-3 rounded-lg outline-none bg-background text-foreground border border-border focus:border-muted transition-colors"
+            className="px-4 py-3 rounded-lg outline-none bg-background/50 backdrop-blur-sm text-foreground border border-border focus:border-muted transition-colors"
           >
             <option value="">Select first coin</option>
             {allcoins.map((coin) => (
@@ -85,7 +85,7 @@ const Compare = () => {
           <select
             value={coinBId}
             onChange={(e) => setCoinBId(e.target.value)}
-            className="px-4 py-3 rounded-lg outline-none bg-background text-foreground border border-border focus:border-muted transition-colors"
+            className="px-4 py-3 rounded-lg outline-none bg-background/50 backdrop-blur-sm text-foreground border border-border focus:border-muted transition-colors"
           >
             <option value="">Select second coin</option>
             {allcoins.map((coin) => (
@@ -98,14 +98,14 @@ const Compare = () => {
 
         {/* Comparison Table */}
         {(coinA || coinB) && (
-          <div className="rounded-xl overflow-hidden border border-border bg-background shadow-sm">
+          <div className="rounded-xl overflow-hidden glass-panel shadow-sm">
             {/* Header */}
             <div
               className="
                 grid grid-cols-[1.4fr_1fr_1fr]
                 md:grid-cols-[2fr_1.5fr_1.5fr]
                 px-4 md:px-6 py-5
-                text-sm font-semibold bg-muted/5 border-b border-border
+                text-sm font-semibold bg-white/5 border-b border-border
               "
             >
               <p></p>

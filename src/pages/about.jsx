@@ -7,7 +7,7 @@ const FAQItem = ({ question, answer }) => {
   return (
     <div
       onClick={() => setOpen(!open)}
-      className="rounded-xl px-5 py-4 cursor-pointer transition border border-border bg-background"
+      className="rounded-xl px-5 py-4 cursor-pointer transition glass-panel shadow-sm hover:shadow-md"
     >
       <div className="flex justify-between items-center gap-4">
         <p className="font-medium text-foreground">
@@ -39,7 +39,7 @@ const FAQItem = ({ question, answer }) => {
 
 const FeatureCard = ({ title, desc }) => (
   <div
-    className="rounded-xl p-6 h-full bg-background border border-border"
+    className="rounded-xl p-6 h-full glass-panel shadow-sm"
   >
     <h3 className="font-semibold mb-2 text-foreground">
       {title}
@@ -52,7 +52,7 @@ const FeatureCard = ({ title, desc }) => (
 
 const About = () => {
   return (
-    <main className="px-4 bg-background text-foreground">
+    <main className="px-4 text-foreground relative z-10">
       <div className="max-w-6xl mx-auto pt-24 pb-16">
 
         {/* Logo + Intro */}
@@ -151,7 +151,7 @@ const About = () => {
             href="https://github.com/Sid-Hurry/CryptoNest"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition hover:bg-muted/10 border border-border text-foreground"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition glass-panel hover:bg-white/10 text-foreground shadow-sm"
           >
             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
               <path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2.1c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.5-.3-5.1-1.3-5.1-5.6 0-1.2.4-2.2 1.2-3-.1-.3-.5-1.4.1-2.9 0 0 .9-.3 3 .1.9-.2 1.9-.3 2.9-.3s2 .1 2.9.3c2.1-.4 3-.1 3-.1.6 1.5.2 2.6.1 2.9.8.8 1.2 1.8 1.2 3 0 4.3-2.6 5.3-5.1 5.6.4.3.8 1 .8 2.1v3.1c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z" />

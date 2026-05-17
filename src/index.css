@@ -11,22 +11,49 @@
 
 /* Light Theme */
 :root {
-  --bg-color: #ffffff;
-  --text-color: #111827;
-  --muted-text: #6b7280;
-  --border-color: #f3f4f6; /* slightly softer border for clean look */
+  --bg-color: #f8fafc;
+  --text-color: #0f172a;
+  --muted-text: #475569;
+  --border-color: rgba(255, 255, 255, 0.4);
+  --glass-bg: rgba(255, 255, 255, 0.6);
+  --glass-border: rgba(255, 255, 255, 0.5);
+  --glass-shadow: rgba(0, 0, 0, 0.05);
+  
+  /* Background gradients */
+  --bg-grad-1: #e2e8f0;
+  --bg-grad-2: #cbd5e1;
 }
 
 /* Dark Theme */
 [data-theme="dark"] {
-  --bg-color: #0f172a; /* deeper slate */
+  --bg-color: #020617; /* Very dark slate for contrast */
   --text-color: #f8fafc;
   --muted-text: #94a3b8;
-  --border-color: #1e293b;
+  --border-color: rgba(255, 255, 255, 0.08);
+  --glass-bg: rgba(15, 23, 42, 0.4);
+  --glass-border: rgba(255, 255, 255, 0.05);
+  --glass-shadow: rgba(0, 0, 0, 0.2);
+  
+  /* Background gradients */
+  --bg-grad-1: #0f172a;
+  --bg-grad-2: #1e1b4b;
 }
 
 body {
   background-color: var(--bg-color);
+  background-image: 
+    radial-gradient(at 0% 0%, var(--bg-grad-1) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, var(--bg-grad-2) 0px, transparent 50%);
+  background-attachment: fixed;
   color: var(--text-color);
   font-family: var(--font-sans);
+  min-height: 100vh;
+}
+
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 8px 32px 0 var(--glass-shadow);
 }

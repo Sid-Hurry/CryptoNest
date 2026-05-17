@@ -25,7 +25,7 @@ const Home = () => {
     .slice(0, 3);
 
   return (
-    <main className="min-h-screen px-4 bg-background text-foreground">
+    <main className="min-h-screen px-4 text-foreground relative z-10">
       <div className="max-w-7xl mx-auto pt-24 pb-16">
 
         {/* Heading */}
@@ -50,7 +50,7 @@ const Home = () => {
                 <Link
                   to={`/coin/${coin.id}`}
                   key={coin.id}
-                  className="flex items-center gap-3 p-4 rounded-xl border border-border bg-background hover:bg-muted/5 hover:scale-[1.02] transition-all duration-300"
+                  className="flex items-center gap-3 p-4 rounded-xl glass-panel hover:bg-white/5 hover:scale-[1.02] transition-all duration-300"
                 >
                   <img src={coin.image} alt={coin.name} className="w-8 h-8" />
                   <div className="flex-1 min-w-0">
@@ -78,10 +78,10 @@ const Home = () => {
                 setShowSuggestions(true);
               }}
               onFocus={() => setShowSuggestions(true)}
-              className="flex-1 px-4 py-2 rounded-l-lg outline-none bg-background text-foreground border border-border focus:border-muted transition-colors"
+              className="flex-1 px-4 py-2 rounded-l-lg outline-none bg-background/50 text-foreground border border-border focus:border-muted transition-colors backdrop-blur-sm"
             />
             <button
-              className="px-6 py-2 rounded-r-lg font-medium border border-border border-l-0 hover:bg-muted/5 transition-colors"
+              className="px-6 py-2 rounded-r-lg font-medium border border-border border-l-0 bg-background/50 backdrop-blur-sm hover:bg-white/10 transition-colors"
             >
               Search
             </button>
@@ -90,7 +90,7 @@ const Home = () => {
           {/* Suggestions */}
           {showSuggestions && suggestions.length > 0 && (
             <div
-              className="absolute z-10 w-full mt-1 rounded-lg shadow-lg bg-background border border-border overflow-hidden"
+              className="absolute z-20 w-full mt-1 rounded-lg shadow-xl glass-panel overflow-hidden"
             >
               {suggestions.map((coin) => (
                 <div
@@ -99,7 +99,7 @@ const Home = () => {
                     setSearch(coin.name);
                     setShowSuggestions(false);
                   }}
-                  className="flex items-center gap-3 px-4 py-2 cursor-pointer hover:opacity-80"
+                  className="flex items-center gap-3 px-4 py-2 cursor-pointer hover:bg-white/5 transition-colors"
                 >
                   <img src={coin.image} alt={coin.name} className="w-5 h-5" />
                   <div>
@@ -117,7 +117,7 @@ const Home = () => {
         </div>
 
         {/* Table */}
-        <div className="w-full mt-16">
+        <div className="w-full mt-16 glass-panel rounded-2xl p-2 md:p-4 mb-8">
 
           {/* Header */}
           <div
@@ -148,7 +148,7 @@ const Home = () => {
                     grid grid-cols-4 md:grid-cols-5
                     px-3 md:px-4 py-4
                     items-center text-sm transition-all duration-300
-                    rounded-xl hover:bg-muted/5 hover:scale-[1.01] hover:shadow-sm
+                    rounded-xl hover:bg-white/5 hover:scale-[1.01] hover:shadow-sm
                   "
                 >
                   <p className="font-medium">{localRank}</p>

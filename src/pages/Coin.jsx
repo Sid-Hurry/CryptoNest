@@ -59,14 +59,14 @@ const Coin = () => {
   }
 
   return (
-    <main className="px-4 min-h-screen bg-background text-foreground">
+    <main className="px-4 min-h-screen text-foreground relative z-10">
       <div className="max-w-5xl mx-auto pt-24 pb-16">
 
         {/* Header */}
         <div className="relative mb-14">
           <button
             onClick={() => navigate(-1)}
-            className="absolute right-0 top-0 flex items-center gap-1 px-3 py-1.5 text-sm font-medium rounded-md transition hover:bg-muted/10 cursor-pointer border border-border text-muted hover:text-foreground"
+            className="absolute right-0 top-0 flex items-center gap-1 px-3 py-1.5 text-sm font-medium rounded-md transition hover:bg-white/10 cursor-pointer border border-border text-muted hover:text-foreground"
           >
             ← Back
           </button>
@@ -134,7 +134,7 @@ const Coin = () => {
           ].map((item) => (
             <div
               key={item.label}
-              className="rounded-xl p-5 border border-border bg-background shadow-sm hover:shadow-md transition-shadow"
+              className="rounded-xl p-5 glass-panel shadow-sm hover:shadow-md transition-shadow"
             >
               <p
                 className="text-sm mb-1 text-muted"
@@ -149,7 +149,7 @@ const Coin = () => {
         </div>
 
         {/* Chart */}
-        <div className="w-full rounded-xl p-4 md:p-6 border border-border bg-background shadow-sm">
+        <div className="w-full rounded-xl p-4 md:p-6 glass-panel shadow-sm">
           <Chart
             key={chartKey}
             chartType="LineChart"

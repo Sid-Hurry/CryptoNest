@@ -17,7 +17,7 @@ const Track = () => {
     search.trim() === "" ? [] : filteredCoins.slice(0, 5);
 
   return (
-    <main className="px-4 min-h-screen bg-background text-foreground">
+    <main className="px-4 min-h-screen text-foreground relative z-10">
       <div className="max-w-7xl mx-auto pt-24 pb-16">
 
         {/* Heading */}
@@ -43,11 +43,11 @@ const Track = () => {
                 setShowSuggestions(true);
               }}
               onFocus={() => setShowSuggestions(true)}
-              className="flex-1 px-4 py-2 rounded-l-lg outline-none bg-background text-foreground border border-border focus:border-muted transition-colors"
+              className="flex-1 px-4 py-2 rounded-l-lg outline-none bg-background/50 text-foreground border border-border focus:border-muted transition-colors backdrop-blur-sm"
             />
 
             <button
-              className="px-6 py-2 rounded-r-lg font-medium border border-border border-l-0 text-foreground bg-background hover:bg-muted/5 transition-colors"
+              className="px-6 py-2 rounded-r-lg font-medium border border-border border-l-0 text-foreground bg-background/50 backdrop-blur-sm hover:bg-white/10 transition-colors"
             >
               Search
             </button>
@@ -56,7 +56,7 @@ const Track = () => {
           {/* Suggestions */}
           {showSuggestions && suggestions.length > 0 && (
             <div
-              className="absolute z-10 w-full mt-1 rounded-lg shadow-lg bg-background border border-border overflow-hidden"
+              className="absolute z-20 w-full mt-1 rounded-lg shadow-xl glass-panel overflow-hidden"
             >
               {suggestions.map((coin) => (
                 <div
@@ -65,7 +65,7 @@ const Track = () => {
                     setSearch(coin.name);
                     setShowSuggestions(false);
                   }}
-                  className="flex items-center gap-3 px-4 py-2 cursor-pointer hover:opacity-80"
+                  className="flex items-center gap-3 px-4 py-2 cursor-pointer hover:bg-white/5 transition-colors"
                 >
                   <img
                     src={coin?.image}
@@ -87,7 +87,7 @@ const Track = () => {
         </div>
 
         {/* Table */}
-        <div className="w-full">
+        <div className="w-full glass-panel rounded-2xl p-2 md:p-4 mb-8">
 
           {/* Header */}
           <div
@@ -111,7 +111,7 @@ const Track = () => {
                 <Link
                   to={`/coin/${coin.id}`}
                   key={coin.id}
-                  className="grid grid-cols-4 md:grid-cols-5 px-3 md:px-4 py-4 items-center text-sm transition-all duration-300 rounded-xl hover:bg-muted/5 hover:scale-[1.01] hover:shadow-sm"
+                  className="grid grid-cols-4 md:grid-cols-5 px-3 md:px-4 py-4 items-center text-sm transition-all duration-300 rounded-xl hover:bg-white/5 hover:scale-[1.01] hover:shadow-sm"
                 >
                   {/* Rank */}
                   <p className="font-medium">{index + 1}</p>

@@ -27,7 +27,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className="w-full sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b border-border"
+      className="w-full sticky top-0 z-50 glass-panel !border-l-0 !border-r-0 !border-t-0 !rounded-none"
     >
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
 
@@ -45,6 +45,7 @@ const Navbar = () => {
         >
           <NavLink to="/">Home</NavLink>
           <NavLink to="/market">Market</NavLink>
+          <NavLink to="/portfolio">Portfolio</NavLink>
           <NavLink to="/track">Track</NavLink>
           <NavLink to="/compare">Compare</NavLink>
           <NavLink to="/about">About</NavLink>
@@ -92,6 +93,7 @@ const Navbar = () => {
       {[
         { to: "/", label: "Home" },
         { to: "/market", label: "Market" },
+        { to: "/portfolio", label: "Portfolio" },
         { to: "/track", label: "Track" },
         { to: "/compare", label: "Compare" },
         { to: "/about", label: "About" },
