@@ -56,19 +56,19 @@ const About = () => {
       <div className="max-w-6xl mx-auto pt-24 pb-16">
 
         {/* Logo + Intro */}
-        <div className="text-center mb-20">
+        <div className="mb-20 border-b border-white/10 pb-10 flex flex-col items-center text-center">
           <img
             src={logo}
             alt="Cryptonest Logo"
-            className="mx-auto w-24 md:w-28 mb-8"
+            className="w-16 md:w-20 mb-6"
           />
-
-          <h1 className="text-3xl md:text-4xl font-extrabold mb-6">
+          <span className="text-xs font-semibold tracking-widest uppercase text-muted mb-3 block">Platform Information</span>
+          <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-foreground to-muted">
             About Cryptonest
           </h1>
 
           <p
-            className="text-base md:text-lg max-w-3xl mx-auto leading-relaxed text-muted"
+            className="mt-4 text-lg max-w-3xl leading-relaxed text-muted"
           >
             Cryptonest is a modern cryptocurrency tracking platform designed to
             give you clear, fast, and reliable insights into the crypto market.
@@ -76,14 +76,14 @@ const About = () => {
             Cryptonest helps you stay informed without unnecessary complexity.
           </p>
 
-          <p className="mt-6 font-medium">
+          <p className="mt-4 font-medium text-foreground">
             Built for learners, traders, and crypto enthusiasts alike.
           </p>
         </div>
 
         {/* Features */}
         <div className="mb-24">
-          <h2 className="text-2xl font-bold text-center mb-12">
+          <h2 className="text-2xl font-bold mb-10 pb-4 border-b border-white/5 text-center">
             What You Can Do With Cryptonest
           </h2>
 
@@ -116,8 +116,8 @@ const About = () => {
         </div>
 
         {/* FAQ */}
-        <div className="max-w-3xl mx-auto">
-          <h2 className="text-2xl font-bold text-center mb-10">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-2xl font-bold mb-10 pb-4 border-b border-white/5 text-center">
             Frequently Asked Questions
           </h2>
 
@@ -146,7 +146,7 @@ const About = () => {
         </div>
 
         {/* GitHub */}
-        <div className="mt-14 flex justify-center">
+        <div className="mt-16 flex justify-center">
           <a
             href="https://github.com/Sid-Hurry/CryptoNest"
             target="_blank"

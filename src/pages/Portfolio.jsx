@@ -66,9 +66,12 @@ const Portfolio = () => {
       <div className="max-w-6xl mx-auto">
         
         {/* Header */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-extrabold mb-4">My Portfolio</h1>
-          <p className="text-lg text-muted max-w-xl mx-auto">
+        <div className="mb-12 border-b border-white/10 pb-8 flex flex-col items-center text-center">
+          <span className="text-xs font-semibold tracking-widest uppercase text-muted mb-3 block">Personal Tracker</span>
+          <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-foreground to-muted">
+            My Portfolio
+          </h1>
+          <p className="mt-4 text-lg max-w-2xl text-muted leading-relaxed">
             Track your crypto investments and monitor your profit and loss in real-time.
           </p>
         </div>

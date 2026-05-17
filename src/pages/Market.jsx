@@ -84,12 +84,13 @@ const Market = () => {
       <div className="max-w-6xl mx-auto py-24">
 
         {/* Heading */}
-        <div className="text-center mb-14">
-          <h1 className="text-4xl font-extrabold">
+        <div className="mb-12 border-b border-white/10 pb-8 flex flex-col items-center text-center">
+          <span className="text-xs font-semibold tracking-widest uppercase text-muted mb-3 block">Global Data</span>
+          <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-foreground to-muted">
             Market Overview
           </h1>
-          <p className="mt-4 text-lg max-w-xl mx-auto text-muted">
-            A snapshot of the global cryptocurrency market and daily movers.
+          <p className="mt-4 text-lg max-w-2xl text-muted leading-relaxed">
+            A snapshot of the global cryptocurrency market, daily movers, and overall performance metrics.
           </p>
         </div>
 

@@ -21,11 +21,12 @@ const Track = () => {
       <div className="max-w-7xl mx-auto pt-24 pb-16">
 
         {/* Heading */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-extrabold">
+        <div className="mb-12 border-b border-white/10 pb-8 flex flex-col items-center text-center">
+          <span className="text-xs font-semibold tracking-widest uppercase text-muted mb-3 block">Cryptocurrency List</span>
+          <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-foreground to-muted">
             Track All Cryptocurrencies
           </h1>
-          <p className="mt-4 text-lg max-w-xl mx-auto text-muted">
+          <p className="mt-4 text-lg max-w-2xl text-muted leading-relaxed">
             Explore the complete cryptocurrency market with real time prices,
             market capitalization and daily performance.
           </p>

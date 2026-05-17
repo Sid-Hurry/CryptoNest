@@ -55,15 +55,14 @@ const Compare = () => {
       <div className="max-w-6xl mx-auto py-24">
 
         {/* Heading */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-extrabold">
+        <div className="mb-12 border-b border-white/10 pb-8 flex flex-col items-center text-center">
+          <span className="text-xs font-semibold tracking-widest uppercase text-muted mb-3 block">Analysis</span>
+          <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-foreground to-muted">
             Compare Cryptocurrencies
           </h1>
-          <p
-            className="mt-4 text-lg max-w-xl mx-auto text-muted"
-          >
+          <p className="mt-4 text-lg max-w-2xl text-muted leading-relaxed">
             Compare two cryptocurrencies side by side and analyze
-            price market cap volume and performance.
+            price, market cap, volume, and performance.
           </p>
         </div>
 
